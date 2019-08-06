@@ -25,7 +25,7 @@ foreach ($testimonials as $result) {
                     </div>
                 </div>
             </div>
-<?}?>
+<?php }?>
 
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
