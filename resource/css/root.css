@@ -1,0 +1,27 @@
+:root{
+    --prime: #903479;
+}
+
+.btn-prime{
+    color: #fff;
+    background-color: var(--prime);
+    transition: all 0.1s;
+    overflow: hidden;
+    position: relative;
+}
+.btn-prime::before{
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: rotate(-45deg) translate(-76px, -137px);
+    transition: all 0.3s;
+}
+.btn-prime:hover{
+    background-color: #ac3f90;
+    color: #fff;
+}
+.btn-prime:hover::before{
+    transform: rotate(-45deg) translate(120px,19px);
+}
