@@ -17,7 +17,7 @@
                     <a class="nav-link" href="<?php echo $result['link'];?>"><?php echo $result['pName'];?></span></a>
                 </li>
 
-                <? } ?>
+                <?php } ?>
 
             </ul>
             <a href="#" class="btn btn-prime btn-lg float-right ">Reservation</a>

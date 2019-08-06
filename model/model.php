@@ -3,8 +3,8 @@
 function db_connect()
 {
     $host = "localhost";
-    $username = "david";
-    $password = "david";
+    $username = "root";
+    $password = "";
     $database = "app4";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
