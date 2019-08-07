@@ -1,5 +1,5 @@
 <?php
 include 'view/slider.php';
-include 'view/services.php';
+include 'view/servicesForH.php';
 
 include 'view/testimonials.php';

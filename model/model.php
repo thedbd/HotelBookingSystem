@@ -62,11 +62,17 @@ function viewTestimonials()
     }
 
 }
-function viewServices()
+function viewServices($limit)
 {
+    $sql = null;
+    if ($limit == 0) {
+        $sql = "SELECT * FROM tbl_services LIMIT 3";
+    } else {
+        $sql = "SELECT * FROM tbl_services";
+
+    }
     $conxn = db_connect();
     $services = array();
-    $sql = "SELECT * FROM tbl_services LIMIT 3";
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     mysqli_close($conxn);
     if ($result->num_rows > 0) {
@@ -74,6 +80,23 @@ function viewServices()
             array_push($services, $row);
         }
         return $services;
+    } else {
+        return false;
+    }
+
+}
+function viewGallery()
+{
+    $conxn = db_connect();
+    $gallery = array();
+    $sql = "SELECT * FROM tbl_gallery WHERE status='1'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($gallery, $row);
+        }
+        return $gallery;
     } else {
         return false;
     }

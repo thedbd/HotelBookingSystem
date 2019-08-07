@@ -47,6 +47,23 @@
          </div>
      </div>
  </li>
+  <li class="nav-item <?php if (isset($_GET['a'])) {$a = addGallery;
+    $b = viewGallery;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true"
+         aria-controls="collapseOne">
+         <i class="fas fa-fw fa-atom"></i>
+         <span>Gallery</span>
+     </a>
+     <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">
+             <a class="collapse-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "addGallery") {echo 'active';}}?>"
+                 href="<?php echo $base_url . "?p=home&a=addGallery" ?>">Add New</a>
+             <a class="collapse-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewGallery") {echo 'active';}}?>"
+                 href="<?php echo $base_url . "?p=home&a=viewGallery" ?>">View All</a>
+         </div>
+     </div>
+ </li>
+
  <li class="nav-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewTestimonials") {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
          aria-controls="collapseOne">
