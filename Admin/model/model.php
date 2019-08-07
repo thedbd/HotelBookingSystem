@@ -206,11 +206,11 @@ function service_view($sid)
     }
 }
 
-function service_add($title, $description)
+function service_add($title, $description, $icon)
 {
     $conxn = db_connect();
-    $stmt = $conxn->prepare("INSERT INTO tbl_services(title,description) values(?,?)");
-    $stmt->bind_param('ss', $title, $description);
+    $stmt = $conxn->prepare("INSERT INTO tbl_services(title,description,icon) values(?,?,?)");
+    $stmt->bind_param('sss', $title, $description, $icon);
     $result = $stmt->execute();
     mysqli_close($conxn);
     if ($result) {
@@ -225,10 +225,10 @@ function service_add($title, $description)
 
 }
 
-function service_edit($sid, $title, $description)
+function service_edit($sid, $title, $description, $icon)
 {
     $conxn = db_connect();
-    $update = "Update tbl_services set title='$title', description='$description' where sid='$sid'";
+    $update = "Update tbl_services set title='$title', description='$description',icon='$icon' where sid='$sid'";
     $result = $conxn->query($update);
     mysqli_close($conxn);
     if ($result) {
@@ -253,10 +253,10 @@ function delete_service($sid)
     }
 }
 
-function addPages($pname,$metaKeywords,$metaDesc,$pType,$pDesc)
+function addPages($pname, $metaKeywords, $metaDesc, $pType, $pDesc)
 {
     $conxn = db_connect();
-     $sql = "INSERT INTO tbl_pages (pName,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$metaKeywords','$metaDesc','$pDesc','$pType')";
+    $sql = "INSERT INTO tbl_pages (pName,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$metaKeywords','$metaDesc','$pDesc','$pType')";
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     $affRows = mysqli_affected_rows($conxn);
     mysqli_close($conxn);

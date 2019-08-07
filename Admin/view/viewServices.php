@@ -4,6 +4,7 @@
             <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
+            <th scope="col">Icon</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -17,6 +18,7 @@ foreach ($service as $result) {
             <th scope="row"><?php echo $result['sid']; ?></th>
             <td><?php echo $result['title']; ?></td>
             <td><?php echo $result['description']; ?></td>
+            <td> <i class="fa fa-<?php echo $result['icon']; ?> fa-fw"></i></td>
             <td>
                 <a href="<?php echo $base_url . "?p=home&a=editServices&id=" . $result['sid']; ?>">
                     <i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
