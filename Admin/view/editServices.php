@@ -21,6 +21,14 @@ foreach ($service as $result) {
             <textarea class="form-control" name="description" id="exampleFormControlTextarea3" rows="7" required><?php echo $result['description']; ?>
             </textarea>
         </div>
+        <div class="form-group">
+            <small id="titleHelp" class="form-text text-muted">Services Icon</small>
+            <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank"
+                class="btn btn-primary btn-sm float-left mt-2 mb-2">Get it from here</a>
+            <input type="text" class="form-control form-control-user" id="" name="icon" required
+                value="<?php echo $result['icon']; ?>" placeholder="Paste Icon Name Here">
+
+        </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
     <?php

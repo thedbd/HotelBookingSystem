@@ -62,3 +62,20 @@ function viewTestimonials()
     }
 
 }
+function viewServices()
+{
+    $conxn = db_connect();
+    $services = array();
+    $sql = "SELECT * FROM tbl_services LIMIT 3";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($services, $row);
+        }
+        return $services;
+    } else {
+        return false;
+    }
+
+}
