@@ -11,6 +11,12 @@ if (isset($_GET['p'])) {
         case 'home':
             include 'controller/HomeController.php';
             break;
+        case 'services':
+            include 'controller/ServicesController.php';
+            break;
+        case 'gallery':
+            include 'controller/GalleryController.php';
+            break;
         default:
             // throwError(404, 'Requested page does not exists.');
             break;

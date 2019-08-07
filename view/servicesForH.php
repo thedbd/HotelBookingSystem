@@ -9,7 +9,8 @@
     <hr width="300px" style="border:1px solid red;" />
     <div class="row services-types">
         <?php
-$services = viewServices();
+$limit = 0;
+$services = viewServices($limit);
 foreach ($services as $result) {
     ?>
         <div class="col-4">

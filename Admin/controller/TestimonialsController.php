@@ -8,14 +8,19 @@ if (isset($_GET['a'])) {
             if ($type == 1 or $type == 0) {
                 $changeTestimonialStatus = changeTestimonialStatus($uid, $type);
                 if ($changeTestimonialStatus) {
-                    $error['body'] = 'Admin Status Changed!';
+                    $error['body'] = 'Testimonials Status Changed!';
                     $error['title'] = 'Info: ';
                     $error['type'] = 'success';
                     setFlash('message', $error);
                     header("location: $base_url?p=home&a=viewTestimonials");
 
                 } else {
-//error
+                    $error['body'] = 'Unable to Change Testimonials Status';
+                    $error['title'] = 'Info: ';
+                    $error['type'] = 'danger';
+                    setFlash('message', $error);
+                    header("location: $base_url?p=home&a=viewTestimonials");
+
                 }
             } else {
 

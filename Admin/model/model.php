@@ -185,6 +185,103 @@ function changeTestimonialStatus($uid, $type)
 
 }
 
+function view_gallery()
+{
+    $gallery = array();
+    $conxn = db_connect();
+    $sql = "Select * from tbl_gallery";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($gallery, $row);
+        }
+        return $gallery;
+    } else {
+        return false;
+    }
+}
+function getGallery($gid)
+{
+
+    $conxn = db_connect();
+    $sql = "Select * from tbl_gallery where gid='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+
+}
+function editGallery($gid, $ititle, $des)
+{
+    $conxn = db_connect();
+    $sql = "UPDATE tbl_gallery SET imagetitle='$ititle',description='$des' WHERE gid='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function changeGalleryStatus($uid, $type)
+{
+
+    $sql = null;
+    $conxn = db_connect();
+    if ($type == 1) {
+        $sql = "UPDATE tbl_gallery SET status='0' WHERE gid='$uid'";
+    } else {
+        $sql = "UPDATE tbl_gallery SET status='1' WHERE gid='$uid'";
+    }
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+function add_new_gallery($Iname, $Des, $target)
+{
+    $conxn = db_connect();
+    $sql = "INSERT INTO tbl_gallery(imagetitle,description,image)values('$Iname','$Des','$target')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+
+        return $result;
+    } else {
+        return false;
+    }
+}
+function deleteGalleryPhoto($uid)
+{
+    $conxn = db_connect();
+
+    $sql = "delete from tbl_gallery where gid='$uid'";
+
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+
+        return $result;
+    } else {
+        return false;
+    }
+}
+
 function service_view($sid)
 {
     $service = array();
@@ -253,10 +350,10 @@ function delete_service($sid)
     }
 }
 
-function addPages($pname, $metaKeywords, $metaDesc, $pType, $pDesc)
+function addPages($pname, $plink, $metaKeywords, $metaDesc, $pType, $pDesc)
 {
     $conxn = db_connect();
-    $sql = "INSERT INTO tbl_pages (pName,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$metaKeywords','$metaDesc','$pDesc','$pType')";
+    $sql = "INSERT INTO tbl_pages (pName,link,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$plink','$metaKeywords','$metaDesc','$pDesc','$pType')";
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     $affRows = mysqli_affected_rows($conxn);
     mysqli_close($conxn);

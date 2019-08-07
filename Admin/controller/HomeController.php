@@ -47,6 +47,18 @@ if (isset($_GET['a'])) {
         case 'addPages':
             include 'controller/PageController.php';
             break;
+        case 'addGallery':
+            include 'controller/GalleryController.php';
+            break;
+        case 'viewGallery':
+            include 'controller/GalleryController.php';
+            break;
+        case 'editGallery':
+            include 'controller/GalleryController.php';
+            break;
+        case 'deleteGallery':
+            include 'controller/GalleryController.php';
+            break;
         default:
             // throwError(404, 'Requested page does not exists.');
             break;
