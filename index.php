@@ -17,6 +17,12 @@ if (isset($_GET['p'])) {
         case 'gallery':
             include 'controller/GalleryController.php';
             break;
+        case 'reservation':
+            include 'controller/ReservationController.php';
+            break;
+            case 'login':
+            include 'controller/LoginController.php';
+            break;
         default:
             // throwError(404, 'Requested page does not exists.');
             break;
