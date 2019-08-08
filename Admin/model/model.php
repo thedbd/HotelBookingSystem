@@ -2,10 +2,10 @@
 
 function db_connect()
 {
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "app4";
+    $host = "remotemysql.com";
+    $username = "pGqTRjw0q9";
+    $password = "2yONMbjaDr";
+    $database = "pGqTRjw0q9";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
