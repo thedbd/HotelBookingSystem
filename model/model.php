@@ -2,10 +2,10 @@
 
 function db_connect()
 {
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "app4";
+    $host = "remotemysql.com";
+    $username = "pGqTRjw0q9";
+    $password = "2yONMbjaDr";
+    $database = "pGqTRjw0q9";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
@@ -61,4 +61,58 @@ function viewTestimonials()
         return false;
     }
 
+}
+function viewServices($limit)
+{
+    $sql = null;
+    if ($limit == 0) {
+        $sql = "SELECT * FROM tbl_services LIMIT 3";
+    } else {
+        $sql = "SELECT * FROM tbl_services";
+
+    }
+    $conxn = db_connect();
+    $services = array();
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($services, $row);
+        }
+        return $services;
+    } else {
+        return false;
+    }
+
+}
+function viewGallery()
+{
+    $conxn = db_connect();
+    $gallery = array();
+    $sql = "SELECT * FROM tbl_gallery WHERE status='1'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($gallery, $row);
+        }
+        return $gallery;
+    } else {
+        return false;
+    }
+
+}
+function guestsLogin($email,$password)
+{
+    $enpassword = sha1($password);
+    $conxn = db_connect();
+    $sql = "SELECT * FROM tbl_guests WHERE gEmail = '$email' AND gPassword = '$enpassword' ";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
 }

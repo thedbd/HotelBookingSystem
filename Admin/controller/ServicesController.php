@@ -13,12 +13,13 @@ try {
                 $error['title'] = 'Info: ';
                 $error['type'] = 'warning';
                 setFlash('message', $error);
-                header("location: $base_url?p=home&a=viewServices");
+                header("location: $base_url?p=home&a=addServices");
                 return;
             }
             $title = $_POST['title'];
             $description = $_POST['description'];
-            $service = service_add($title, $description);
+            $icon = $_POST['icon'];
+            $service = service_add($title, $description, $icon);
             if ($service) {
                 $error['body'] = 'Service Added Successfully!';
                 $error['title'] = 'Info: ';
@@ -69,7 +70,8 @@ try {
             $sid = $_GET['id'];
             $title = $_POST['title'];
             $description = $_POST['description'];
-            $service = service_edit($sid, $title, $description);
+            $icon = $_POST['icon'];
+            $service = service_edit($sid, $title, $description, $icon);
             if ($service) {
                 $error['body'] = 'Service Updated Successfully!';
                 $error['title'] = 'Info: ';

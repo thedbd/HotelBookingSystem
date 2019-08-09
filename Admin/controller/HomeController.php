@@ -52,6 +52,26 @@ if (isset($_GET['a'])) {
             break;
          case 'viewRooms':
             include 'controller/RoomController.php';
+        case 'addGallery':
+            include 'controller/GalleryController.php';
+            break;
+        case 'deleteRoom':
+            include 'controller/RoomController.php';
+            break;
+        case 'viewGallery':
+            include 'controller/GalleryController.php';
+            break;
+        case 'editGallery':
+            include 'controller/GalleryController.php';
+            break;
+        case 'deleteGallery':
+            include 'controller/GalleryController.php';
+            break;
+        case 'addSlider':
+            include 'controller/SliderController.php';
+            break;
+        case 'viewSlider':
+            include 'controller/SliderController.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');

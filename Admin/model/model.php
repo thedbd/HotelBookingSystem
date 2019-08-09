@@ -2,10 +2,11 @@
 
 function db_connect()
 {
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "app4";
+    $host = "remotemysql.com";
+    $username = "pGqTRjw0q9";
+    $password = "2yONMbjaDr";
+    $database = "pGqTRjw0q9";
+
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
@@ -185,6 +186,103 @@ function changeTestimonialStatus($uid, $type)
 
 }
 
+function view_gallery()
+{
+    $gallery = array();
+    $conxn = db_connect();
+    $sql = "Select * from tbl_gallery";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($gallery, $row);
+        }
+        return $gallery;
+    } else {
+        return false;
+    }
+}
+function getGallery($gid)
+{
+
+    $conxn = db_connect();
+    $sql = "Select * from tbl_gallery where gid='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+
+}
+function editGallery($gid, $ititle, $des)
+{
+    $conxn = db_connect();
+    $sql = "UPDATE tbl_gallery SET imagetitle='$ititle',description='$des' WHERE gid='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function changeGalleryStatus($uid, $type)
+{
+
+    $sql = null;
+    $conxn = db_connect();
+    if ($type == 1) {
+        $sql = "UPDATE tbl_gallery SET status='0' WHERE gid='$uid'";
+    } else {
+        $sql = "UPDATE tbl_gallery SET status='1' WHERE gid='$uid'";
+    }
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+function add_new_gallery($Iname, $Des, $target)
+{
+    $conxn = db_connect();
+    $sql = "INSERT INTO tbl_gallery(imagetitle,description,image)values('$Iname','$Des','$target')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+
+        return $result;
+    } else {
+        return false;
+    }
+}
+function deleteGalleryPhoto($uid)
+{
+    $conxn = db_connect();
+
+    $sql = "delete from tbl_gallery where gid='$uid'";
+
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+
+        return $result;
+    } else {
+        return false;
+    }
+}
+
 function service_view($sid)
 {
     $service = array();
@@ -206,11 +304,11 @@ function service_view($sid)
     }
 }
 
-function service_add($title, $description)
+function service_add($title, $description, $icon)
 {
     $conxn = db_connect();
-    $stmt = $conxn->prepare("INSERT INTO tbl_services(title,description) values(?,?)");
-    $stmt->bind_param('ss', $title, $description);
+    $stmt = $conxn->prepare("INSERT INTO tbl_services(title,description,icon) values(?,?,?)");
+    $stmt->bind_param('sss', $title, $description, $icon);
     $result = $stmt->execute();
     mysqli_close($conxn);
     if ($result) {
@@ -225,10 +323,10 @@ function service_add($title, $description)
 
 }
 
-function service_edit($sid, $title, $description)
+function service_edit($sid, $title, $description, $icon)
 {
     $conxn = db_connect();
-    $update = "Update tbl_services set title='$title', description='$description' where sid='$sid'";
+    $update = "Update tbl_services set title='$title', description='$description',icon='$icon' where sid='$sid'";
     $result = $conxn->query($update);
     mysqli_close($conxn);
     if ($result) {
@@ -253,10 +351,10 @@ function delete_service($sid)
     }
 }
 
-function addPages($pname,$metaKeywords,$metaDesc,$pType,$pDesc)
+function addPages($pname, $plink, $title, $metaKeywords, $metaDesc, $pType, $pDesc)
 {
     $conxn = db_connect();
-     $sql = "INSERT INTO tbl_pages (pName,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$metaKeywords','$metaDesc','$pDesc','$pType')";
+    $sql = "INSERT INTO tbl_pages (pName,link,title,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$plink','$title','$metaKeywords','$metaDesc','$pDesc','$pType')";
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     $affRows = mysqli_affected_rows($conxn);
     mysqli_close($conxn);
@@ -266,4 +364,73 @@ function addPages($pname,$metaKeywords,$metaDesc,$pType,$pDesc)
         return false;
     }
 
+}
+
+function add_new_room($rname, $Des,$fea,$price, $target)
+{
+    $conxn = db_connect();
+    $sql = "INSERT INTO tbl_rooms(rname,rdescription,rfeatures,rprice,image)values('$rname','$Des','$fea','$price','$target')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+
+        return $result;
+    } else {
+        return false;
+    }
+}
+
+function view_rooms()
+{
+    $rooms = array();
+    $conxn = db_connect();
+    $sql = "Select * from tbl_rooms";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($rooms, $row);
+        }
+        return $rooms;
+    } else {
+        return false;
+    }
+}
+
+function changeRoomStatus($uid, $type)
+{
+
+    $sql = null;
+    $conxn = db_connect();
+    if ($type == 1) {
+        $sql = "UPDATE tbl_rooms SET status='0' WHERE rid='$uid'";
+    } else {
+        $sql = "UPDATE tbl_rooms SET status='1' WHERE rid='$uid'";
+    }
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function deleteRoom($uid)
+{
+    $conxn = db_connect();
+
+    $sql = "delete from tbl_rooms where rid='$uid'";
+
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+
+        return $result;
+    } else {
+        return false;
+    }
 }
