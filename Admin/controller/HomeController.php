@@ -70,6 +70,12 @@ if (isset($_GET['a'])) {
         case 'addSlider':
             include 'controller/SliderController.php';
             break;
+            case 'deleteSlider':
+            include 'controller/SliderController.php';
+            break;
+            case 'editSlider':
+            include 'controller/SliderController.php';
+            break;
         case 'viewSlider':
             include 'controller/SliderController.php';
             break;

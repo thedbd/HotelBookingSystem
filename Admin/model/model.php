@@ -261,7 +261,7 @@ function add_new_gallery($Iname, $Des, $target)
     mysqli_close($conxn);
     if ($result) {
 
-        return $result;
+        return true;
     } else {
         return false;
     }
@@ -365,71 +365,48 @@ function addPages($pname, $plink, $title, $metaKeywords, $metaDesc, $pType, $pDe
     }
 
 }
-
-function add_new_room($rname, $Des,$fea,$price, $target)
+function addSlider($title, $desc, $target)
 {
     $conxn = db_connect();
-    $sql = "INSERT INTO tbl_rooms(rname,rdescription,rfeatures,rprice,image)values('$rname','$Des','$fea','$price','$target')";
+    $sql = "INSERT INTO tbl_slider (sliderImg,sliderTitle,sliderDesc)values('$target','$title','$desc')";
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     $affRows = mysqli_affected_rows($conxn);
     mysqli_close($conxn);
     if ($result) {
-
-        return $result;
-    } else {
-        return false;
-    }
-}
-
-function view_rooms()
-{
-    $rooms = array();
-    $conxn = db_connect();
-    $sql = "Select * from tbl_rooms";
-    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
-    mysqli_close($conxn);
-    if ($result->num_rows > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            array_push($rooms, $row);
-        }
-        return $rooms;
-    } else {
-        return false;
-    }
-}
-
-function changeRoomStatus($uid, $type)
-{
-
-    $sql = null;
-    $conxn = db_connect();
-    if ($type == 1) {
-        $sql = "UPDATE tbl_rooms SET status='0' WHERE rid='$uid'";
-    } else {
-        $sql = "UPDATE tbl_rooms SET status='1' WHERE rid='$uid'";
-    }
-    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
-    $affRows = mysqli_affected_rows($conxn);
-    mysqli_close($conxn);
-    if ($affRows > 0) {
         return true;
     } else {
         return false;
     }
 }
 
-function deleteRoom($uid)
+function viewSlider()
+{
+    $slider = array();
+    $conxn = db_connect();
+    $sql = "Select * from tbl_slider";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($slider, $row);
+        }
+        return $slider;
+    } else {
+        return false;
+    }
+}
+function deleteSlider($uid)
 {
     $conxn = db_connect();
 
-    $sql = "delete from tbl_rooms where rid='$uid'";
+    $sql = "delete from tbl_slider where sliderId='$uid'";
 
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     $affRows = mysqli_affected_rows($conxn);
     mysqli_close($conxn);
     if ($result) {
 
-        return $result;
+        return true;
     } else {
         return false;
     }
