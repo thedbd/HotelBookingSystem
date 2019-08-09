@@ -20,6 +20,10 @@
                 <input type="text" class="form-control form-control-user" id="" name="type" required value=""
                     placeholder="Page Type">
             </div>
+             <div class="form-group">
+                <input type="text" class="form-control form-control-user" id="" name="ptitle" required value=""
+                    placeholder="Page Title">
+            </div>
             <div class="form-group">
                 <textarea class="form-control mb-3" name="description" id="exampleFormControlTextarea3" rows="7"
                     required placeholder="Page Description"></textarea>

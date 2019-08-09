@@ -78,6 +78,22 @@
      </div>
  </li>
 
+ <li class="nav-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewSlider") {echo 'active';}}?>">
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true"
+         aria-controls="collapseSeven">
+         <i class="fas fa-fw fa-cog"></i>
+         <span>Slider</span>
+     </a>
+     <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">
+             <a class="collapse-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "addSlider") {echo 'active';}}?>"
+                 href="<?php echo $base_url . "?p=home&a=addSlider" ?>">Add New</a>
+             <a class="collapse-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewSlider") {echo 'active';}}?>"
+                 href="<?php echo $base_url . "?p=home&a=viewSlider" ?>">View All</a>
+         </div>
+     </div>
+ </li>
+
  </ul>
 
  <!-- End of Sidebar -->

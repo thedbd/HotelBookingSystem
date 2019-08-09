@@ -59,6 +59,12 @@ if (isset($_GET['a'])) {
         case 'deleteGallery':
             include 'controller/GalleryController.php';
             break;
+        case 'addSlider':
+            include 'controller/SliderController.php';
+            break;
+        case 'viewSlider':
+            include 'controller/SliderController.php';
+            break;
         default:
             // throwError(404, 'Requested page does not exists.');
             break;

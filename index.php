@@ -20,8 +20,11 @@ if (isset($_GET['p'])) {
         case 'reservation':
             include 'controller/ReservationController.php';
             break;
-            case 'login':
+        case 'login':
             include 'controller/LoginController.php';
+            break;
+        case 'contact':
+            include 'controller/ContactController.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');

@@ -13,7 +13,8 @@ if (isset($_GET['a'])) {
         $pType = $_POST['type'];
         $plink = "?p=" . strtolower($pType);
         $pDesc = $_POST['description'];
-        $addPages = addPages($pname, $plink, $metaKeywords, $metaDesc, $pType, $pDesc);
+        $title = $_POST['ptitle'];
+        $addPages = addPages($pname, $plink, $title, $metaKeywords, $metaDesc, $pType, $pDesc);
         if ($addPages) {
             $error['body'] = 'New page successfully added!';
             $error['title'] = 'Info: ';

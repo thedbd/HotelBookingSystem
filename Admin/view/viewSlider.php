@@ -1,0 +1,1 @@
+<h1>Slider view</h1>
