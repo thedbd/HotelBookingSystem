@@ -2,10 +2,11 @@
 
 function db_connect()
 {
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "app4";
+    $host = "remotemysql.com";
+    $username = "pGqTRjw0q9";
+    $password = "2yONMbjaDr";
+    $database = "pGqTRjw0q9";
+
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
@@ -350,10 +351,10 @@ function delete_service($sid)
     }
 }
 
-function addPages($pname, $plink, $metaKeywords, $metaDesc, $pType, $pDesc)
+function addPages($pname, $plink, $title, $metaKeywords, $metaDesc, $pType, $pDesc)
 {
     $conxn = db_connect();
-    $sql = "INSERT INTO tbl_pages (pName,link,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$plink','$metaKeywords','$metaDesc','$pDesc','$pType')";
+    $sql = "INSERT INTO tbl_pages (pName,link,title,metaKeyword,metaDesc,pageDesc,type) VALUES ('$pname','$plink','$title','$metaKeywords','$metaDesc','$pDesc','$pType')";
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     $affRows = mysqli_affected_rows($conxn);
     mysqli_close($conxn);
