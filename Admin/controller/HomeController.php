@@ -47,6 +47,12 @@ if (isset($_GET['a'])) {
         case 'addPages':
             include 'controller/PageController.php';
             break;
+        case 'addRooms':
+            include 'controller/RoomController.php';
+            break;
+         case 'viewRooms':
+            include 'controller/RoomController.php';
+            break;
         default:
             // throwError(404, 'Requested page does not exists.');
             break;

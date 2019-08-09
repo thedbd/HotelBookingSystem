@@ -61,12 +61,26 @@
      </div>
  </li>
 
+ <li class="nav-item <?php if (isset($_GET['a'])) {$a = addRooms;
+    $b = viewRooms;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true"
+         aria-controls="collapseEight">
+         <i class="fas fa-fw fa-atom"></i>
+         <span>Rooms</span>
+     </a>
+     <div id="collapseEight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">
+             <a class="collapse-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "addRooms") {echo 'active';}}?>"
+                 href="<?php echo $base_url . "?p=home&a=addRooms" ?>">Add New</a>
+             <a class="collapse-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewRooms") {echo 'active';}}?>"
+                 href="<?php echo $base_url . "?p=home&a=viewRooms" ?>">View All</a>
+         </div>
+     </div>
+ </li>
+
  </ul>
 
  <!-- End of Sidebar -->
-
-
-
 
 
  <!-- Content Wrapper -->
@@ -107,9 +121,6 @@
                          </form>
                      </div>
                  </li>
-
-
-
 
 
                  <!-- Nav Item - User Information -->
@@ -153,8 +164,8 @@ if (hasFlash('message')) {
     $falshError = getFlash('message');
     foreach ($falshError as $fe) {
         ?>
-             <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
-                 <? echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
+            <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
+                 <?php echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
 echo $fe['body'];?>
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
