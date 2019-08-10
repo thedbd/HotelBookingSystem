@@ -15,7 +15,7 @@
          </div>
      </div>
  </li>
-  <li class="nav-item <?php if (isset($_GET['a'])) {$a = addPages;
+ <li class="nav-item <?php if (isset($_GET['a'])) {$a = addPages;
     $b = viewPages;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
          aria-controls="collapseFour">
@@ -47,7 +47,7 @@
          </div>
      </div>
  </li>
-  <li class="nav-item <?php if (isset($_GET['a'])) {$a = addGallery;
+ <li class="nav-item <?php if (isset($_GET['a'])) {$a = addGallery;
     $b = viewGallery;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true"
          aria-controls="collapseOne">
@@ -187,8 +187,8 @@ if (hasFlash('message')) {
     foreach ($falshError as $fe) {
         ?>
              <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
-                 <? echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
-echo $fe['body'];?>
+                 <?php echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
+        echo $fe['body']; ?>
                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                      <span aria-hidden="true">&times;</span>
                  </button>

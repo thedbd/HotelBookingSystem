@@ -21,7 +21,7 @@ foreach ($pages as $result) {
                 <?php }?>
 
             </ul>
-            <a href="?p=reservation" class="btn btn-prime btn-lg float-right ">Reservation</a>
+            <a href="u/?p=dashboard" class="btn btn-prime btn-lg float-right ">Reservation</a>
         </div>
     </div>
 </nav>

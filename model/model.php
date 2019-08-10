@@ -6,6 +6,11 @@ function db_connect()
     $username = "pGqTRjw0q9";
     $password = "2yONMbjaDr";
     $database = "pGqTRjw0q9";
+
+    // $host = "localhost";
+    //  $username = "root";
+    // $password = "";
+    //   $database = "app4";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
@@ -102,7 +107,7 @@ function viewGallery()
     }
 
 }
-function guestsLogin($email,$password)
+function guestsLogin($email, $password)
 {
     $enpassword = sha1($password);
     $conxn = db_connect();
@@ -115,4 +120,36 @@ function guestsLogin($email,$password)
     } else {
         return false;
     }
+}
+
+function viewAccomodation()
+{
+    $conxn = db_connect();
+    $accomodation = array();
+    $sql = "SELECT * FROM tbl_rooms WHERE status='1'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($accomodation, $row);
+        }
+        return $accomodation;
+    } else {
+        return false;
+    }
+
+}
+function getAccomodation($rid)
+{
+    $conxn = db_connect();
+    $sql = "SELECT * FROM tbl_rooms WHERE rid='$rid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+
 }
