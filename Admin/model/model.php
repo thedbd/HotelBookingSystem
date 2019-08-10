@@ -411,3 +411,32 @@ function deleteSlider($uid)
         return false;
     }
 }
+function getSlider($gid)
+{
+
+    $conxn = db_connect();
+    $sql = "Select * from tbl_slider where sliderId='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+
+}
+function editSlider($gid, $ititle, $des)
+{
+    $conxn = db_connect();
+    $sql = "UPDATE tbl_slider SET sliderTitle='$ititle',sliderDesc='$des' WHERE sliderId='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}

@@ -45,6 +45,33 @@ if (isset($_GET['a'])) {
     }
 }
 
+if ($_GET['a'] == "editSlider") {
+    if (empty($_POST)) {
+        include 'view/editSlider.php';
+        return;
+    }
+    $gid = $_GET['sliderTitle'];
+    $ititle = $_POST['sliderTitle'];
+    $des = $_POST['sliderDesc'];
+        include 'view/editSlider.php';
+        include 'view/editSlider.php';
+    $editSlider = editSlider($gid, $ititle, $des);
+    if ($editSlider) {
+        $error['body'] = 'Slider Updated';
+        $error['title'] = 'Info: ';
+        $error['type'] = 'success';
+        setFlash('message', $error);
+        header("location: $base_url?p=home&a=viewSlider");
+    } else {
+        $error['body'] = 'Unable to Update Slider';
+        $error['title'] = 'Info: ';
+        $error['type'] = 'danger';
+        setFlash('message', $error);
+        header("location: $base_url?p=home&a=viewSlider");
+
+    }
+}
+
     if ($_GET['a'] == "deleteSlider") {
 
         if (isset($_GET['id'])) {
