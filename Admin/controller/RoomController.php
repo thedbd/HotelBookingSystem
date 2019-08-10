@@ -91,10 +91,39 @@ try {
                 setFlash('message', $error);
                 header("location: $base_url?p=home&a=viewRooms");
             }
-            } else {
-        }
-    
+         } else {
+
+          }
+
         include 'view/viewRooms.php';
+    }
+
+    if ($_GET['a'] == "editRooms") {
+        if (empty($_POST)) {
+            include 'view/editRooms.php';
+            return;
+        }
+        $rid = $_GET['id'];
+        $rname = $_POST['rname'];
+        $des = $_POST['rdescription'];
+        $fea = $_POST['rfeatures'];
+        $rprice = $_POST['rprice'];
+
+        $editRooms = editRooms($rid, $rname, $des, $fea, $rprice);
+        if ($editRooms) {
+            $error['body'] = 'Room Updated';
+            $error['title'] = 'Info: ';
+            $error['type'] = 'success';
+            setFlash('message', $error);
+            header("location: $base_url?p=home&a=viewRooms");
+        } else {
+            $error['body'] = 'Unable to Update Room';
+            $error['title'] = 'Info: ';
+            $error['type'] = 'danger';
+            setFlash('message', $error);
+            header("location: $base_url?p=home&a=viewRooms");
+
+        }
     }
 }catch(Exception $ex){
     echo $ex;

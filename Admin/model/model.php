@@ -381,11 +381,18 @@ function add_new_room($rname, $Des,$fea,$price, $target)
     }
 }
 
-function view_rooms()
+function view_rooms($rid)
 {
     $rooms = array();
     $conxn = db_connect();
-    $sql = "Select * from tbl_rooms";
+    if(isset($rid))
+    {
+        $sql = "select * from tbl_rooms where rid='$rid'";
+    }
+    else
+    {
+        $sql = "Select * from tbl_rooms";
+    }
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     mysqli_close($conxn);
     if ($result->num_rows > 0) {
@@ -397,6 +404,7 @@ function view_rooms()
         return false;
     }
 }
+
 
 function changeRoomStatus($uid, $type)
 {
@@ -431,6 +439,20 @@ function deleteRoom($uid)
 
         return $result;
     } else {
+        return false;
+    }
+}
+
+function editRooms($rid, $rname, $des, $fea, $rprice)
+{
+    $conxn = db_connect();
+    $update = "Update tbl_rooms set rname='$rname', rdescription='$des',rfeatures='$fea',rprice='$rprice' where rid='$rid'";
+    $result = $conxn->query($update);
+    mysqli_close($conxn);
+    if ($result) {
+        return $conxn;
+    } else {
+        $conxn->close();
         return false;
     }
 }

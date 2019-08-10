@@ -16,7 +16,8 @@
     </thead>
     <tbody>
         <?php
-$room = view_rooms();
+        $rid = null;
+        $room = view_rooms($rid);
 if ($room) {
     foreach ($room as $result) {
         ?>
