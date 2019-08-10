@@ -52,6 +52,10 @@ if (isset($_GET['a'])) {
             break;
          case 'viewRooms':
             include 'controller/RoomController.php';
+            break;
+        case 'editRooms':
+            include 'controller/RoomController.php';
+            break;
         case 'addGallery':
             include 'controller/GalleryController.php';
             break;
