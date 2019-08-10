@@ -7,6 +7,18 @@ include 'view/header.php';
 include 'view/nav.php';
 if (isset($_GET['p'])) {
     $controller = $_GET['p'];
+    $pages = pageInfo($controller);
+    if ($pages['type'] == "home" || $controller == "login") {
+    } else {
+        ?>
+
+<div class="container ">
+    <h3 class="text-center mt-5"><?php echo $pages['pName']; ?></h3>
+    <p class="text-center"><?php echo $pages['pageDesc']; ?></p>
+    <hr width="300px" style="border:1px solid red;">
+
+    <?php
+}
     switch ($controller) {
         case 'home':
             include 'controller/HomeController.php';
@@ -17,6 +29,9 @@ if (isset($_GET['p'])) {
         case 'gallery':
             include 'controller/GalleryController.php';
             break;
+        case 'accomodation':
+            include 'controller/AccomodationController.php';
+            break;
         case 'reservation':
             include 'controller/ReservationController.php';
             break;
@@ -25,6 +40,9 @@ if (isset($_GET['p'])) {
             break;
         case 'contact':
             include 'controller/ContactController.php';
+            break;
+        case 'about':
+            include 'controller/AboutController.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');

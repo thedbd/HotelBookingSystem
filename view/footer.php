@@ -1,3 +1,5 @@
+
+</div>
 <footer class="mt-5">
     <!--footer starts here-->
     <div class="upper-footer mt-5">
