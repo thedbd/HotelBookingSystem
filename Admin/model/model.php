@@ -456,3 +456,71 @@ function editRooms($rid, $rname, $des, $fea, $rprice)
         return false;
     }
 }
+function addSlider($title, $desc, $target)
+{
+    $conxn = db_connect();
+    $sql = "INSERT INTO tbl_slider (sliderImg,sliderTitle,sliderDesc)values('$target','$title','$desc')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function viewSlider()
+{
+    $slider = array();
+    $conxn = db_connect();
+    $sql = "Select * from tbl_slider";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($slider, $row);
+        }
+        return $slider;
+    } else {
+        return false;
+    }
+}
+function deleteSlider($uid)
+{
+    $conxn = db_connect();
+    $sql = "delete from tbl_slider where sliderId='$uid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function getSlider($gid)
+{
+    $conxn = db_connect();
+    $sql = "Select * from tbl_slider where sliderId='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+}
+function editSlider($gid, $ititle, $des)
+{
+    $conxn = db_connect();
+    $sql = "UPDATE tbl_slider SET sliderTitle='$ititle',sliderDesc='$des' WHERE sliderId='$gid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
