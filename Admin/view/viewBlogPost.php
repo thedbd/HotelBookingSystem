@@ -1,5 +1,4 @@
 
-
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -35,14 +34,14 @@
 
                 &nbsp 
                 
-                <!--
-                    <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
+                
+                    <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']."&img=" . $result['image']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
                     <i class="fa fa-trash" aria-hidden="true"></i></a>
-                -->
-
+                
+                <!--
                 <a href="#deleteBlogModal" data-toggle="modal" onClick="del(<?php echo $result['bid']; ?>); " >
                  <i class="fa fa-trash" aria-hidden="true"></i></a>
-
+                -->
             </td>
         </tr>
         <?php
@@ -53,7 +52,7 @@
 </table>
 
 
-
+<!--
 <div id="deleteBlogModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -84,3 +83,4 @@
             </div>
         </div>
     </div>
+-->

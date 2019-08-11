@@ -524,3 +524,70 @@ function editSlider($gid, $ititle, $des)
         return false;
     }
 }
+
+function blogpost_view($bid)
+{
+    $blogpost = array();
+    $conxn = db_connect();
+    if(isset($bid))
+    {
+        $sql = "Select * from tbl_blogpost where bid='$bid'";
+    }
+    else
+    {
+        $sql = "Select * from tbl_blogpost";
+    }
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($blogpost, $row);
+        }
+        return $blogpost;
+    } else {
+        return false();
+    }
+}
+
+function addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status)
+{
+    $conxn = db_connect();
+    $sql = "INSERT INTO tbl_blogpost (title,description,posted_by,posted_date,last_update,image,status)values('$title', '$description','$postedby','$posted_date','$lastUpdate','$target','$status')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($result) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function delete_blogpost($bid)
+{
+    $conxn = db_connect();
+    $sql = "DELETE FROM tbl_blogpost WHERE bid='$bid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function blogpost_edit($bid,$title,$description,$postedby,$d,$target)
+{
+    $conxn = db_connect();
+    $update = "Update tbl_blogpost set title='$title', description='$description', posted_by='$postedby',last_update = '$d',image='$target' where bid='$bid'";
+    $result = $conxn->query($update);
+
+    if ($result) {
+        return $conxn;
+    } else {
+        $conxn->close();
+        return false;
+    }
+}
+
