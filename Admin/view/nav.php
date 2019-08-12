@@ -105,8 +105,20 @@
                  href="<?php echo $base_url . "?p=home&a=viewSlider" ?>">View All</a>
          </div>
      </div>
- </li>
 
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse9" aria-expanded="true"
+         aria-controls="collapseTwo">
+         <i class="fab fa-blogger"></i>
+         <span>Blog Post</span>
+     </a>
+
+     <div id="collapse9" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">
+             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=addBlogPost" ?>">Add blog</a>
+             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
+         </div>
+     </div>
+ </li>
  </ul>
 
  <!-- End of Sidebar -->
@@ -196,10 +208,11 @@ if (hasFlash('message')) {
              <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
                  <?php echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
         echo $fe['body']; ?>
-                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                         <span aria-hidden="true">&times;</span>
-                     </button>
-                 </div>
-                 <?php }}?>
-                 <br>
-                 </div>
+
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <?php }}?>
+             <br>
+         </div>
