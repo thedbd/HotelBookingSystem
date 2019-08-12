@@ -208,9 +208,7 @@ if (hasFlash('message')) {
              <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
                  <?php echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
         echo $fe['body']; ?>
-                 <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
-                     <?php echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
-        echo $fe['body']; ?>
+                
                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                          <span aria-hidden="true">&times;</span>
                      </button>
