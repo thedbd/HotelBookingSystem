@@ -153,3 +153,54 @@ function getAccomodation($rid)
     }
 
 }
+function getSlider()
+{
+    $conxn = db_connect();
+    $slider = array();
+    $sql = "SELECT * FROM tbl_slider";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($slider, $row);
+        }
+        return $slider;
+    } else {
+        return false;
+    }
+
+}
+function viewBlogpost()
+{
+    $conxn = db_connect();
+    $blogpost = array();
+    $sql = "SELECT * FROM tbl_blogpost limit 3";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($blogpost, $row);
+        }
+        return $blogpost;
+    } else {
+        return false;
+    }
+}
+
+function viewRoom()
+{
+    $conxn = db_connect();
+    $room = array();
+    $sql = "SELECT * FROM tbl_rooms WHERE status='1'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($room, $row);
+        }
+        return $room;
+    } else {
+        return false;
+    }
+
+}
