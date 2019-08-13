@@ -2,11 +2,16 @@
 
 function db_connect()
 {
-    $host = "remotemysql.com";
-    $username = "pGqTRjw0q9";
-    $password = "2yONMbjaDr";
-    $database = "pGqTRjw0q9";
-    $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
+   // $host = "remotemysql.com";
+ //   $username = "pGqTRjw0q9";
+  //  $password = "2yONMbjaDr";
+  //  $database = "pGqTRjw0q9";
+
+     $host = "localhost";
+     $username = "root";
+     $password = "";
+     $database = "hotel1";
+     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
     if ($conxn->connect_error) {
@@ -102,7 +107,7 @@ function viewGallery()
     }
 
 }
-function guestsLogin($email,$password)
+function guestsLogin($email, $password)
 {
     $enpassword = sha1($password);
     $conxn = db_connect();
@@ -115,4 +120,87 @@ function guestsLogin($email,$password)
     } else {
         return false;
     }
+}
+
+function viewAccomodation()
+{
+    $conxn = db_connect();
+    $accomodation = array();
+    $sql = "SELECT * FROM tbl_rooms WHERE status='1'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($accomodation, $row);
+        }
+        return $accomodation;
+    } else {
+        return false;
+    }
+
+}
+function getAccomodation($rid)
+{
+    $conxn = db_connect();
+    $sql = "SELECT * FROM tbl_rooms WHERE rid='$rid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+
+}
+function getSlider()
+{
+    $conxn = db_connect();
+    $slider = array();
+    $sql = "SELECT * FROM tbl_slider";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($slider, $row);
+        }
+        return $slider;
+    } else {
+        return false;
+    }
+
+}
+function viewBlogpost()
+{
+    $conxn = db_connect();
+    $blogpost = array();
+    $sql = "SELECT * FROM tbl_blogpost limit 3";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($blogpost, $row);
+        }
+        return $blogpost;
+    } else {
+        return false;
+    }
+}
+
+function viewRoom()
+{
+    $conxn = db_connect();
+    $room = array();
+    $sql = "SELECT * FROM tbl_rooms WHERE status='1'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($room, $row);
+        }
+        return $room;
+    } else {
+        return false;
+    }
+
 }

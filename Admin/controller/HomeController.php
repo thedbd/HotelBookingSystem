@@ -47,6 +47,15 @@ if (isset($_GET['a'])) {
         case 'addPages':
             include 'controller/PageController.php';
             break;
+        case 'viewPages':
+            include 'controller/PageController.php';
+            break;
+        case 'deletePage':
+            include 'controller/PageController.php';
+            break;
+        case 'editPages':
+            include 'controller/PageController.php';
+            break;
         case 'addRooms':
             include 'controller/RoomController.php';
             break;
@@ -74,10 +83,16 @@ if (isset($_GET['a'])) {
         case 'addSlider':
             include 'controller/SliderController.php';
             break;
+            case 'deleteSlider':
+            include 'controller/SliderController.php';
+            break;
+            case 'editSlider':
+            include 'controller/SliderController.php';
+            break;
         case 'viewSlider':
             include 'controller/SliderController.php';
             break;
-         case 'addBlogPost':
+        case 'addBlogPost':
             include 'controller/BlogPostController.php';
             break;
         case 'viewBlogPost':

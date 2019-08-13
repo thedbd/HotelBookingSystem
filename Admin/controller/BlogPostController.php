@@ -23,11 +23,15 @@ if (isset($_GET['a'])) {
 	        $description = $_POST['description'];
 	        $postedby = $_POST['postedby'];
 	        $posted_date = date("Y-m-d")." ".date("h:i:sa"); 
+			//$posted_date = date("Y-m-d")." ".date("h:i:sa");
+			$posted_date = date("Y-m-d");//." ".date("h:i:sa"); 
+			$lastUpdate =date("Y-m-d");
 	        $status = '1';
 	       
 	        $target="";
 	                 if (!empty($_FILES["fileToUpload"])) {
 	                    $target = "images/".basename($_FILES['fileToUpload']['name']);
+	                    $target = "resource/images/".basename($_FILES['fileToUpload']['name']);
 	               
 	                    move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target);
 	                }
@@ -41,6 +45,23 @@ if (isset($_GET['a'])) {
 	        }else{
 	        return false;
 	         }
+	         $blogpost = addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status);
+	        if ($blogpost) {
+	            $msg['title'] = 'Success!!';
+				$msg['body'] = "successfully added Blog";
+				$msg['type'] = 'success';
+				setFlash('message', $msg);
+				header("location:" . $base_url . "?p=home&a=viewBlogPost");
+				return;
+					
+				}else{
+					$msg['title'] = 'Info!!';
+					$msg['body'] = "Cannot added Blog";
+					$msg['type'] = 'danger';
+					setFlash('message', $msg);
+					header("location:" . $base_url . "?p=home&a=addBlogPost");
+					return;
+				}
 	     }catch(Exception $ex)
 	     {
 	     	throwError();
@@ -66,6 +87,25 @@ if (isset($_GET['a'])) {
         } else {
             echo "<h2>something went wrong!</h2>";
             return;
+		//$bid = $_POST['delname'];
+		$bid = $_GET['id'];
+		$img = $_GET['img'];
+        $deleteBlogPost = delete_blogpost($bid);
+        if ($deleteBlogPost) {
+			if (file_exists($img)) {
+				unlink($img);
+			}
+          	   $error['body'] = 'Blog Post Deleted';
+                $error['title'] = 'Info: ';
+                $error['type'] = 'success';
+                setFlash('message', $error);
+                header("location: $base_url?p=home&a=viewBlogPost");
+        } else {
+           		 $error['body'] = 'Unable to Delete BlogPost';
+                $error['title'] = 'Info: ';
+                $error['type'] = 'danger';
+                setFlash('message', $error);
+                header("location: $base_url?p=home&a=viewBlogPost");
         }
     }  
 
@@ -84,6 +124,11 @@ if (isset($_GET['a'])) {
                 $target="";
 	                 if (!empty($_FILES["fileToUpload"])) {
 	                    $target = "images/".basename($_FILES['fileToUpload']['name']);
+                $d = date("Y-m-d");//." ".date("h:i:sa");
+                
+                $target="";
+	                 if (!empty($_FILES["fileToUpload"])) {
+	                    $target = "resource/images/".basename($_FILES['fileToUpload']['name']);
 	               		
 	                    move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target);
 	                }

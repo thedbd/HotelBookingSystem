@@ -1,46 +1,41 @@
 <!-- sliders starts here-->
-
+<?php
+$slider = getSlider();
+echo sizeof($slider);
+?>
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <?php
+
+for ($i = 0; $i < sizeof($slider); $i++) {
+    ?>
+        <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $i; ?>"
+            class="<?php if ($i == 0) {echo 'active';}?>"></li>
+        <?php
+}?>
     </ol>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="assets/images/slide1.jpg" class="d-block w-100" alt="...">
+        <?php
+foreach ($slider as $result) {
+    ?>
+        <div class="carousel-item <?php if ($result['sliderId'] == '170') {echo 'active';}?>">
+            <img src=" Admin/<?php echo $result['sliderImg'] ?>" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <div class="jumbotron slider-text">
-                    <h1 class="display-4">Amazing Balcony View</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
-                        attention to featured content or information.</p>
-                    <a class="btn btn-prime btn-lg" href="#" role="button">Book Rooms</a>
+                    <h1 class="display-4"><?php echo $result['sliderTitle']; ?></h1>
+                    <p class="lead"><?php echo $result['sliderDesc']; ?></p>
+                    <a class="btn btn-prime btn-lg" href="?p=accomodation" role="button">Book Rooms</a>
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <img src="assets/images/slide2.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <div class="jumbotron slider-text">
-                    <h1 class="display-4">Amazing Rooms with Bathtubs</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
-                        attention to featured content or information.</p>
-                    <a class="btn btn-prime btn-lg" href="#" role="button">Book Rooms</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <img src="assets/images/slide3.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <div class="jumbotron slider-text">
-                    <h1 class="display-4">Amazing Rooms & Beds</h1>
-                    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra
-                        attention to featured content or information.</p>
-                    <a class="btn btn-prime btn-lg" href="#" role="button">Book Rooms</a>
-                </div>
-            </div>
-        </div>
+
+
+        <?php
+}?>
     </div>
+
+    <!--
+Carousel ends here -->
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -51,7 +46,6 @@
     </a>
 </div>
 
-<!-- Carousel ends here -->
 
 <!-- CTA starts here -->
 <div class="container-fluid cta">
@@ -61,7 +55,7 @@
                 <h5>Reserve a room for your family</h5> — Far far away behind the word mountains far.
             </div>
             <div class="col-3">
-                <a href="#" class="btn btn-prime btn-lg float-right">Reserve Now!</a>
+                <a href="?p=accomodation" class="btn btn-prime btn-lg float-right">Reserve Now!</a>
             </div>
         </div>
     </div>

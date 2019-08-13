@@ -15,7 +15,7 @@
          </div>
      </div>
  </li>
-  <li class="nav-item <?php if (isset($_GET['a'])) {$a = addPages;
+ <li class="nav-item <?php if (isset($_GET['a'])) {$a = addPages;
     $b = viewPages;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
          aria-controls="collapseFour">
@@ -47,7 +47,7 @@
          </div>
      </div>
  </li>
-  <li class="nav-item <?php if (isset($_GET['a'])) {$a = addGallery;
+ <li class="nav-item <?php if (isset($_GET['a'])) {$a = addGallery;
     $b = viewGallery;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true"
          aria-controls="collapseOne">
@@ -108,18 +108,29 @@
      </div>
 
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse9" aria-expanded="true"
+<<<<<<< HEAD
          aria-controls="collapse9">
+=======
+         aria-controls="collapseTwo">
+>>>>>>> master
          <i class="fab fa-blogger"></i>
          <span>Blog Post</span>
      </a>
 
      <div id="collapse9" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
          <div class="bg-white py-2 collapse-inner rounded">
+<<<<<<< HEAD
             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=addBlogPost" ?>">Add blog</a>
             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
          </div>
      </div>
 
+=======
+             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=addBlogPost" ?>">Add blog</a>
+             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
+         </div>
+     </div>
+>>>>>>> master
  </li>
  </ul>
 
@@ -201,18 +212,20 @@
              <!-- Page Heading -->
              <div class="d-sm-flex align-items-center justify-content-between mb-4">
                  <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-             </div>
-             <?php
+             </div>       
+<?php
 if (hasFlash('message')) {
     $falshError = getFlash('message');
     foreach ($falshError as $fe) {
         ?>
-            <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
+             <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
                  <?php echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
-echo $fe['body'];?>
-                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-             <?php }}?>
-             <br>
+        echo $fe['body']; ?>
+                
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <?php }}?>
+                 <br> 
+         </div>
