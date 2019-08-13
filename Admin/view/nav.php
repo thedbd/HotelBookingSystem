@@ -114,8 +114,8 @@
 
      <div id="collapse9" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=addBlogPost" ?>">Add blog</a>
-            <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
+             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=addBlogPost" ?>">Add blog</a>
+             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
          </div>
      </div>
  </li>
@@ -215,3 +215,11 @@ if (hasFlash('message')) {
                  </div>
                  <?php }}?>
                  <br> 
+
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <?php }}?>
+             <br>
+         </div>

@@ -342,3 +342,8 @@ textarea.form-control {
 .foot-4 a img {
     width: 170px;
 }
+
+.box {
+    background-color: #b1b1b1;
+    border: #333 1px;
+}
