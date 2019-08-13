@@ -1,11 +1,15 @@
 <?php
 
 function db_connect()
-{
-    $host = "remotemysql.com";
-    $username = "pGqTRjw0q9";
-    $password = "2yONMbjaDr";
-    $database = "pGqTRjw0q9";
+{ // $host = "remotemysql.com";
+    // $username = "pGqTRjw0q9";
+    // $password = "2yONMbjaDr";
+    // $database = "pGqTRjw0q9";
+
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "project";
 
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
@@ -366,7 +370,7 @@ function addPages($pname, $plink, $title, $metaKeywords, $metaDesc, $pType, $pDe
 
 }
 
-function add_new_room($rname, $Des,$fea,$price, $target)
+function add_new_room($rname, $Des, $fea, $price, $target)
 {
     $conxn = db_connect();
     $sql = "INSERT INTO tbl_rooms(rname,rdescription,rfeatures,rprice,image)values('$rname','$Des','$fea','$price','$target')";
@@ -385,12 +389,9 @@ function view_rooms($rid)
 {
     $rooms = array();
     $conxn = db_connect();
-    if(isset($rid))
-    {
+    if (isset($rid)) {
         $sql = "select * from tbl_rooms where rid='$rid'";
-    }
-    else
-    {
+    } else {
         $sql = "Select * from tbl_rooms";
     }
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
@@ -404,7 +405,6 @@ function view_rooms($rid)
         return false;
     }
 }
-
 
 function changeRoomStatus($uid, $type)
 {
