@@ -1,5 +1,37 @@
 <?php
-    
+<<<<<<< HEAD
+include 'view/contact.php';
+?>
+
+<?php
+    if (isset($_GET['p'])) {
+        if ($_GET['p'] == "contact") {
+            if (empty($_POST)) {
+                include 'view/contact.php';
+                return;
+            }
+            $name = $_POST['cname'];
+            $to = $_POST['cemail'];
+            $subject = $_POST['csubject'];
+            $msg = $_POST['cmessage'];
+            $headers = "From: linkwithdm@gmail.com" . "\r\n" .
+            
+            // use wordwrap() if lines are longer than 70 characters
+            $msg = wordwrap($msg,70);
+            
+            // send email
+            if(mail($to,$subject,$msg,$headers)){
+                echo "mail sent successfully";
+            }
+            else
+            {
+                echo "mail can't be sent.";
+            }
+        }
+    }
+?>
+=======
+
     require 'PHPMailer-master/PHPMailerAutoload.php';
 
     if(isset($_GET['p']))
@@ -51,7 +83,7 @@
                 $mail->addReplyTo($email, $name);
                 // $mail->addCC('cc@example.com');
                 //  $mail->addBCC('bcc@example.com');
-            
+             
                 $mail->isHTML(true);
                 
                 $mail->Subject = $subject;
@@ -59,16 +91,20 @@
                 $mail->AltBody = "This is the plain text version of the email content";
                 if(!$mail->send())
                 {
+                   
                     include 'view/contact.php';
                     echo "Mailer Error: " . $mail->ErrorInfo;
                 }
                 else
-                {
-                    include 'view/contact.php';
-                    echo "<script type='text/javascript'>alert('Message has been sent successfully!')</script>";
+                {   
+                    $success = "message sent successfully!";
+                    header("location: $base_url?p=contact&msg=<?php $success ?>");
+                   // include 'view/contact.php';
+                   // echo "<script type='text/javascript'>alert('Message has been sent successfully!')</script>";
                 }
 
         }
     }
 
     
+>>>>>>> master

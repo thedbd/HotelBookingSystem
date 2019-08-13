@@ -22,6 +22,7 @@ if (isset($_GET['a'])) {
         	$title = $_POST['title'];
 	        $description = $_POST['description'];
 	        $postedby = $_POST['postedby'];
+	        $posted_date = date("Y-m-d")." ".date("h:i:sa"); 
 			//$posted_date = date("Y-m-d")." ".date("h:i:sa");
 			$posted_date = date("Y-m-d");//." ".date("h:i:sa"); 
 			$lastUpdate =date("Y-m-d");
@@ -29,11 +30,21 @@ if (isset($_GET['a'])) {
 	       
 	        $target="";
 	                 if (!empty($_FILES["fileToUpload"])) {
+	                    $target = "images/".basename($_FILES['fileToUpload']['name']);
 	                    $target = "resource/images/".basename($_FILES['fileToUpload']['name']);
 	               
 	                    move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target);
 	                }
 
+	         $blogpost = blogpost_add($title, $description,$postedby,$posted_date,$target,$status);
+	        if ($blogpost) {
+	 
+	            echo "<h3>Added Post</h3>";
+	            include 'view/addBlogPost.php';
+	            
+	        }else{
+	        return false;
+	         }
 	         $blogpost = addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status);
 	        if ($blogpost) {
 	            $msg['title'] = 'Success!!';
@@ -65,6 +76,17 @@ if (isset($_GET['a'])) {
 
     if ($_GET['a'] == "deleteBlogPost") {
 
+        $bid = $_POST['delname'];
+        $deleteBlogPost = delete_blogpost($bid);
+        if ($deleteBlogPost) {
+
+            echo "<h3>Deleted</h3>";
+
+            include 'view/viewBlogPost.php';
+           // header("location:" . $base_url . "?p=home&a=viewBlogPost");
+        } else {
+            echo "<h2>something went wrong!</h2>";
+            return;
 		//$bid = $_POST['delname'];
 		$bid = $_GET['id'];
 		$img = $_GET['img'];
@@ -97,6 +119,11 @@ if (isset($_GET['a'])) {
                 $title = $_POST['title'];
                 $postedby =$_POST['postedby'];
                 $description = $_POST['description'];
+                $d = date("Y-m-d")." ".date("h:i:sa");
+                
+                $target="";
+	                 if (!empty($_FILES["fileToUpload"])) {
+	                    $target = "images/".basename($_FILES['fileToUpload']['name']);
                 $d = date("Y-m-d");//." ".date("h:i:sa");
                 
                 $target="";

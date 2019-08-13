@@ -1,5 +1,8 @@
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
 <link rel="stylesheet" type="text/css" href="./resource/css/blogpost.css">
 <script type="text/javascript" src="./resource/js/blogpost.js"></script>
 

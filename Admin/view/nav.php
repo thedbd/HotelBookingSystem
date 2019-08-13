@@ -92,6 +92,7 @@
              <a class="collapse-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewRooms") {echo 'active';}}?>"
                  href="<?php echo $base_url . "?p=home&a=viewRooms" ?>">View All</a>
  <li class="nav-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewSlider") {echo 'active';}}?>">
+
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true"
          aria-controls="collapseSeven">
          <i class="fas fa-fw fa-cog"></i>
@@ -107,17 +108,29 @@
      </div>
 
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse9" aria-expanded="true"
+<<<<<<< HEAD
+         aria-controls="collapse9">
+=======
          aria-controls="collapseTwo">
+>>>>>>> master
          <i class="fab fa-blogger"></i>
          <span>Blog Post</span>
      </a>
 
      <div id="collapse9" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
          <div class="bg-white py-2 collapse-inner rounded">
+<<<<<<< HEAD
+            <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=addBlogPost" ?>">Add blog</a>
+            <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
+         </div>
+     </div>
+
+=======
              <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=addBlogPost" ?>">Add blog</a>
              <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
          </div>
      </div>
+>>>>>>> master
  </li>
  </ul>
 
@@ -199,8 +212,8 @@
              <!-- Page Heading -->
              <div class="d-sm-flex align-items-center justify-content-between mb-4">
                  <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-             </div>
-             <?php
+             </div>       
+<?php
 if (hasFlash('message')) {
     $falshError = getFlash('message');
     foreach ($falshError as $fe) {
@@ -208,11 +221,11 @@ if (hasFlash('message')) {
              <div class="alert alert-<?php echo $fe['type']; ?> alert-dismissible fade show" role="alert">
                  <?php echo empty($fe['title']) ? '' : "<strong>" . $fe['title'] . "</strong> ";
         echo $fe['body']; ?>
-
-                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                     <span aria-hidden="true">&times;</span>
-                 </button>
-             </div>
-             <?php }}?>
-             <br>
+                
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+                 </div>
+                 <?php }}?>
+                 <br> 
          </div>
