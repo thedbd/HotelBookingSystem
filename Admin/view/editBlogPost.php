@@ -32,8 +32,7 @@
 
 		  		<div class="form-group">
 			    <label for="desc">Description:</label>
-			    <textarea class="form-control" name="description" rows="5" id="desc" required>
-			    	<?php echo $result['description']; ?>
+			    <textarea class="form-control" name="description" rows="5" id="desc" required><?php echo $result['description']; ?>
 			    </textarea>
 			  	</div>
   

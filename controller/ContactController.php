@@ -1,5 +1,5 @@
 <?php
-    
+
     require 'PHPMailer-master/PHPMailerAutoload.php';
 
     if(isset($_GET['p']))
@@ -51,7 +51,7 @@
                 $mail->addReplyTo($email, $name);
                 // $mail->addCC('cc@example.com');
                 //  $mail->addBCC('bcc@example.com');
-            
+             
                 $mail->isHTML(true);
                 
                 $mail->Subject = $subject;
@@ -59,13 +59,16 @@
                 $mail->AltBody = "This is the plain text version of the email content";
                 if(!$mail->send())
                 {
+                   
                     include 'view/contact.php';
                     echo "Mailer Error: " . $mail->ErrorInfo;
                 }
                 else
-                {
-                    include 'view/contact.php';
-                    echo "<script type='text/javascript'>alert('Message has been sent successfully!')</script>";
+                {   
+                    $success = "message sent successfully!";
+                    header("location: $base_url?p=contact&msg=<?php $success ?>");
+                   // include 'view/contact.php';
+                   // echo "<script type='text/javascript'>alert('Message has been sent successfully!')</script>";
                 }
 
         }
