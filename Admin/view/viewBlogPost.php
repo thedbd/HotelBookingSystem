@@ -1,4 +1,3 @@
-
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -15,10 +14,10 @@
     </thead>
     <tbody>
         <?php
-        $bid = null;
-        $blogpost = blogpost_view($bid);
-        foreach ($blogpost as $result) {
-        ?>
+$bid = null;
+$blogpost = blogpost_view($bid);
+foreach ($blogpost as $result) {
+    ?>
         <tr>
             <th scope="row"><?php echo $result['bid']; ?></th>
             <td><?php echo $result['title']; ?></td>
@@ -26,18 +25,19 @@
             <td><?php echo $result['posted_by']; ?></td>
             <td><?php echo $result['posted_date']; ?></td>
             <td><?php echo $result['last_update']; ?></td>
-            <td><?php echo $result['image']; ?></td>
+            <td><img src="<?php echo $result['image']; ?>" width="70px" height="70px></td>
             <td><?php echo $result['status']; ?></td>
             <td>
-                <a href="<?php echo $base_url . "?p=home&a=editBlogPost&id=" . $result['bid']; ?>">
-                 <i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                <a href=" <?php echo $base_url . "?p=home&a=editBlogPost&id=" . $result['bid']; ?>">
+                <i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
 
-                &nbsp 
-                
-                
-                    <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']."&img=" . $result['image']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
+                &nbsp
+
+
+                <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid'] . "&img=" . $result['image']; ?>"
+                    onClick="return confirm('Are you absolutely sure you want to delete?')">
                     <i class="fa fa-trash" aria-hidden="true"></i></a>
-                
+
                 <!--
                 <a href="#deleteBlogModal" data-toggle="modal" onClick="del(<?php echo $result['bid']; ?>); " >
                  <i class="fa fa-trash" aria-hidden="true"></i></a>
@@ -57,19 +57,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <form method="POST" action="<?php echo $base_url . "?p=home&a=deleteBlogPost" ?> ">
-                    <div class="modal-header"> 
+                    <div class="modal-header">
 
                         <script type="text/javascript">
                             function del(x){
                                  document.getElementById("dlt").value = x;
                                 }
-                        </script>  
+                        </script>
 
-                        <input type="hidden" id="dlt" name="delname">                  
+                        <input type="hidden" id="dlt" name="delname">
                         <h4 class="modal-title">Delete Blog</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
-                    <div class="modal-body">                    
+                    <div class="modal-body">
                         <p>Are you sure you want to delete this Record?</p>
                         <p class="text-warning"><small>This action can delete a record.</small></p>
                     </div>
