@@ -8,7 +8,7 @@ include 'view/nav.php';
 if (isset($_GET['p'])) {
     $controller = $_GET['p'];
     $pages = pageInfo($controller);
-    if ($pages['type'] == "home" || $controller == "login") {
+    if ($pages['type'] == "home" || $controller == "login" || $controller == "blog") {
     } else {
         ?>
 
@@ -43,6 +43,9 @@ if (isset($_GET['p'])) {
             break;
         case 'about':
             include 'controller/AboutController.php';
+            break;
+        case 'blog':
+            include 'controller/BlogController.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');

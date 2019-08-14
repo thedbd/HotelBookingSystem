@@ -21,7 +21,7 @@ echo $d;
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Posted By</label>
                     <input type="text" name="postedby" class="form-control" id="postedby"
-                        value="<?php echo $_SESSION['admin']['name']; ?>" disabled>
+                        value="<?php echo $_SESSION['admin']['name']; ?>">
 			 	 </div>
 		  </div>
 	 </div>

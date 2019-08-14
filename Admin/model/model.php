@@ -366,7 +366,7 @@ function addPages($pname, $plink, $title, $metaKeywords, $metaDesc, $pType, $pDe
 
 }
 
-function add_new_room($rname, $Des,$fea,$price, $target)
+function add_new_room($rname, $Des, $fea, $price, $target)
 {
     $conxn = db_connect();
     $sql = "INSERT INTO tbl_rooms(rname,rdescription,rfeatures,rprice,image)values('$rname','$Des','$fea','$price','$target')";
@@ -385,12 +385,9 @@ function view_rooms($rid)
 {
     $rooms = array();
     $conxn = db_connect();
-    if(isset($rid))
-    {
+    if (isset($rid)) {
         $sql = "select * from tbl_rooms where rid='$rid'";
-    }
-    else
-    {
+    } else {
         $sql = "Select * from tbl_rooms";
     }
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
@@ -404,7 +401,6 @@ function view_rooms($rid)
         return false;
     }
 }
-
 
 function changeRoomStatus($uid, $type)
 {
@@ -529,12 +525,9 @@ function blogpost_view($bid)
 {
     $blogpost = array();
     $conxn = db_connect();
-    if(isset($bid))
-    {
+    if (isset($bid)) {
         $sql = "Select * from tbl_blogpost where bid='$bid'";
-    }
-    else
-    {
+    } else {
         $sql = "Select * from tbl_blogpost";
     }
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
@@ -549,7 +542,7 @@ function blogpost_view($bid)
     }
 }
 
-function addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status)
+function addBlogPost($title, $description, $postedby, $posted_date, $lastUpdate, $target, $status)
 {
     $conxn = db_connect();
     $sql = "INSERT INTO tbl_blogpost (title,description,posted_by,posted_date,last_update,image,status)values('$title', '$description','$postedby','$posted_date','$lastUpdate','$target','$status')";
@@ -562,7 +555,6 @@ function addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$tar
         return false;
     }
 }
-
 
 function delete_blogpost($bid)
 {
@@ -577,7 +569,7 @@ function delete_blogpost($bid)
     }
 }
 
-function blogpost_edit($bid,$title,$description,$postedby,$d,$target)
+function blogpost_edit($bid, $title, $description, $postedby, $d, $target)
 {
     $conxn = db_connect();
     $update = "Update tbl_blogpost set title='$title', description='$description', posted_by='$postedby',last_update = '$d',image='$target' where bid='$bid'";
@@ -591,3 +583,11 @@ function blogpost_edit($bid,$title,$description,$postedby,$d,$target)
     }
 }
 
+function getRegGuests()
+{
+    $conxn = db_connect();
+    $sql = "SELECT * FROM tbl_guests";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    return mysqli_num_rows($result);
+}
