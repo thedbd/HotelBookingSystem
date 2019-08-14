@@ -1,7 +1,7 @@
 <div class="row dash">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-body "><span class="badge badge-danger">5</span>
+            <div class="card-body "><span class="badge badge-danger"></span>
                 <div class="row">
                     <div class="col-5 col-md-4">
                         <div class="icon-big text-center icon-warning">
@@ -11,7 +11,7 @@
                     <div class="col-7 col-md-8">
                         <div class="numbers">
                             <p class="card-category">Registered Guests</p>
-                            <p class="card-title color">150
+                            <p class="card-title color"><?php echo getRegGuests(); ?>
                             </p>
                             <p>
                             </p>

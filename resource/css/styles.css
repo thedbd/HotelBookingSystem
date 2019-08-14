@@ -343,7 +343,8 @@ textarea.form-control {
     width: 170px;
 }
 
-.box {
-    background-color: #b1b1b1;
-    border: #333 1px;
+.latestnews {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    list-style: none;
 }

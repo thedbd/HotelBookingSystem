@@ -2,15 +2,15 @@
 
 function db_connect()
 {
-    // $host = "remotemysql.com";
-    // $username = "pGqTRjw0q9";
-    // $password = "2yONMbjaDr";
-    // $database = "pGqTRjw0q9";
+    $host = "remotemysql.com";
+    $username = "pGqTRjw0q9";
+    $password = "2yONMbjaDr";
+    $database = "pGqTRjw0q9";
 
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "project";
+    //  $host = "localhost";
+    //  $username = "root";
+    //  $password = "";
+    //  $database = "project";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
@@ -170,11 +170,19 @@ function getSlider()
     }
 
 }
-function viewBlogpost()
+function viewBlogpost($limit)
 {
     $conxn = db_connect();
     $blogpost = array();
-    $sql = "SELECT * FROM tbl_blogpost limit 3";
+    $sql;
+    if ($limit == 0) {
+        $sql = "SELECT * FROM tbl_blogpost ORDER BY bid DESc";
+
+    } else {
+        $sql = "SELECT * FROM tbl_blogpost ORDER BY bid DESC limit 3";
+
+    }
+
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     mysqli_close($conxn);
     if ($result->num_rows > 0) {
@@ -199,6 +207,21 @@ function viewRoom()
             array_push($room, $row);
         }
         return $room;
+    } else {
+        return false;
+    }
+
+}
+
+function getBlog($id)
+{
+    $conxn = db_connect();
+    $sql = "SELECT * FROM tbl_blogpost WHERE bid='$id'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
     } else {
         return false;
     }

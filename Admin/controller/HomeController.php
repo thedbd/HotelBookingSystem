@@ -83,6 +83,18 @@ if (isset($_GET['a'])) {
         case 'viewSlider':
             include 'controller/SliderController.php';
             break;
+        case 'addBlogPost':
+            include 'controller/BlogPostController.php';
+            break;
+        case 'viewBlogPost':
+            include 'controller/BlogPostController.php';
+            break;
+        case 'editBlogPost':
+            include 'controller/BlogPostController.php';
+            break;
+        case 'deleteBlogPost':
+            include 'controller/BlogPostController.php';
+            break;
         default:
             // throwError(404, 'Requested page does not exists.');
             break;

@@ -13,22 +13,21 @@
                     <h3>Recent News</h3>
                     <div class="recent-news hidden-mb-60">
                         <?php
-
-$blogpost = viewBlogpost();
+$limit = 3;
+$blogpost = viewBlogpost($limit);
 foreach ($blogpost as $result) {
     ?>
                         <div class="media">
                             <div class="media-left">
-                                <img class="media-object" src="assets/images/image2.jpg" width="50px" heoght="50px"
-                                    class="small-img" alt="small-img">
+                                <img class="media-object" src="Admin/<?php echo $result['image']; ?>" width="50px"
+                                    heoght="50px" class="small-img" alt="small-img">
                             </div>
                             <div class="media-body">
                                 <h3 class="media-heading">
-                                    <a><?php echo $result['title']; ?></a>
+                                    <a
+                                        href="?p=blog&id=<?php echo $result['bid']; ?>"><?php echo $result['title']; ?></a>
                                 </h3>
-                                <p>
-                                    <a><?php echo $result['description']; ?></a>
-                                </p>
+
                                 <h5><i class="fa fa-calendar"></i><a><?php echo $result['posted_date']; ?></a>
                                 </h5>
                             </div>

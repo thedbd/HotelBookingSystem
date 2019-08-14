@@ -18,22 +18,22 @@
     </div>
 
     <div class="col-lg-9">
-        <form>
+        <form method="post">
             <div class="form-row">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Your Name">
+                        <input type="text" class="form-control" name="uname" id="inputPassword4" placeholder="Enter Your Name">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Email">
+                        <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Enter Email">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" id="inputAddress" placeholder="Enter Subject">
+                        <input type="text" class="form-control" name="subject" id="inputAddress" placeholder="Enter Subject">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <textarea class="form-control" id="validationTextarea" rows="5"
+                        <textarea class="form-control" name="msg" id="validationTextarea" rows="5"
                             placeholder="Enter Message"></textarea>
                     </div>
                 </div>
