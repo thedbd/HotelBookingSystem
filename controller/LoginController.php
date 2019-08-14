@@ -6,6 +6,7 @@ if (isset($_GET['p'])) {
             include 'view/login.php';
             return;
         }
+
         $email = $_POST['email'];
         $pass = $_POST['password'];
         $guest = guestsLogin($email, $pass);
