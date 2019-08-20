@@ -604,6 +604,24 @@ function blogpost_view($bid)
     }
 }
 
+function blogpost_add($title,$description,$postedby,$posted_date,$target,$status)
+{
+    
+    $conxn = db_connect();
+    $stmt = $conxn->prepare("INSERT INTO tbl_blogpost(title,description,posted_by,posted_date,image,status) values(?,?,?,?,?,?)");
+    $stmt->bind_param('sssssi', $title, $description,$postedby,$posted_date,$target,$status);
+    $result = $stmt->execute();
+    if ($result) {
+        $stmt->close();
+        $conxn->close();
+        return $result;
+    } else {
+        $stmt->close();
+        $conxn->close();
+        return false;
+    } 
+}
+
 function addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status)
 {
     $conxn = db_connect();
