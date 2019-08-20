@@ -8,7 +8,7 @@ include 'view/nav.php';
 if (isset($_GET['p'])) {
     $controller = $_GET['p'];
     $pages = pageInfo($controller);
-    if ($pages['type'] == "home" || $controller == "login" || $controller == "blog") {
+    if ($pages['type'] == "home" || $controller == "login" || $controller == "blog" || $controller == "new_password" || $controller == "fpass" || $controller == "registration") {
     } else {
         ?>
 
@@ -46,6 +46,15 @@ if (isset($_GET['p'])) {
             break;
         case 'blog':
             include 'controller/BlogController.php';
+            break;
+        case 'fpass':
+            include 'controller/FPassController.php';
+            break;
+        case 'new_password':
+            include 'controller/SetPassController.php';
+            break;
+        case 'registration':
+            include 'controller/RegistrationController.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');

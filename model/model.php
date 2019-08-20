@@ -2,15 +2,15 @@
 
 function db_connect()
 {
-    $host = "remotemysql.com";
-    $username = "pGqTRjw0q9";
-    $password = "2yONMbjaDr";
-    $database = "pGqTRjw0q9";
+    //$host = "remotemysql.com";
+    // $username = "pGqTRjw0q9";
+    //  $password = "2yONMbjaDr";
+    //  $database = "pGqTRjw0q9";
 
-    //  $host = "localhost";
-    //  $username = "root";
-    //  $password = "";
-    //  $database = "project";
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "project";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
 // Check connection
@@ -222,6 +222,90 @@ function getBlog($id)
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
         return $row;
+    } else {
+        return false;
+    }
+
+}
+function checkemail($email)
+{
+
+    $conxn = db_connect();
+    $sql = "SELECT * FROM tbl_guests WHERE gEmail = '$email'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+}
+
+function tokenForReset($email, $token)
+{
+    $conxn = db_connect();
+    $sql = "INSERT INTO tbl_password_reset (email,token) VALUES ('$email','$token')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+//get email for reset password
+function getEmail($token)
+{
+    $conxn = db_connect();
+    $sql = "SELECT * FROM tbl_password_reset WHERE token = '$token' LIMIT 1";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+
+}
+function setnewpass($email, $enpassword)
+{
+    $conxn = db_connect();
+    $sql = "UPDATE tbl_guests SET gPassword= '$enpassword' WHERE gEmail='$email'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function setTokenNull($tokenID)
+{
+    $conxn = db_connect();
+    $sql = "UPDATE tbl_password_reset SET token= 'null' WHERE resetID='$tokenID'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+function guestReg($name, $email, $password, $phone, $country)
+{
+    $conxn = db_connect();
+    $sql = "INSERT INTO tbl_guests (gName,gEmail,gPassword,gPhone,gCountry) VALUES ('$name','$email','$password','$phone','$country')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
     } else {
         return false;
     }
