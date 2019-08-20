@@ -2,6 +2,7 @@
 
 function db_connect()
 {
+<<<<<<< HEAD
     //$host = "remotemysql.com";
     // $username = "pGqTRjw0q9";
     //  $password = "2yONMbjaDr";
@@ -12,6 +13,18 @@ function db_connect()
     $password = "";
     $database = "project";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
+=======
+    $host = "remotemysql.com";
+    $username = "pGqTRjw0q9"; 
+    $password = "2yONMbjaDr";
+    $database = "pGqTRjw0q9";
+
+    // $host = "localhost";
+    // $username = "root";
+    // $password = "";
+    // $database = "hotel1";
+     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
+>>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4
 
 // Check connection
     if ($conxn->connect_error) {

@@ -1,10 +1,23 @@
 <?php
-
+ 
 function db_connect()
+<<<<<<< HEAD
 {$host = "remotemysql.com";
     $username = "pGqTRjw0q9";
     $password = "2yONMbjaDr";
     $database = "pGqTRjw0q9";
+=======
+{
+   $host = "remotemysql.com";
+   $username = "pGqTRjw0q9";
+  $password = "2yONMbjaDr";
+   $database = "pGqTRjw0q9";
+
+   // $host = "localhost";
+   // $username = "root";
+   // $password = "";
+   // $database = "hotel1";
+>>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4
 
     //   $host = "localhost";
     //  $username = "root";
@@ -367,7 +380,57 @@ function addPages($pname, $plink, $title, $metaKeywords, $metaDesc, $pType, $pDe
     } else {
         return false;
     }
+}
 
+function viewPages($pid)
+{
+    $pages = array();
+    $conxn = db_connect();
+    if(isset($pid))
+    {
+        $sql = "Select * from tbl_pages where pID='$pid'";
+    }
+    else
+    {
+        $sql = "Select * from tbl_pages";
+    }
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($pages, $row);
+        }
+        return $pages;
+    } else {
+        return false();
+    }
+}
+ 
+function deletePage($pid)
+{
+    $conxn = db_connect();
+    $sql = "DELETE FROM tbl_pages WHERE pID='$pid'";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function editPages($pid, $pname, $metaKeywords,$metaDesc,$pType,$plink,$pDesc,$title)
+{
+    $conxn = db_connect();
+    $update = "Update tbl_pages set pName='$pname', metaKeyword='$metaKeywords',metaDesc='$metaDesc',pageDesc='$pDesc',type='$pType',link='$plink',title='$title' where pID='$pid'";
+    $result = $conxn->query($update);
+    mysqli_close($conxn);
+    if ($result) {
+        return $conxn;
+    } else {
+        $conxn->close();
+        return false;
+    }
 }
 
 function add_new_room($rname, $Des, $fea, $price, $target)
@@ -546,7 +609,29 @@ function blogpost_view($bid)
     }
 }
 
+<<<<<<< HEAD
 function addBlogPost($title, $description, $postedby, $posted_date, $lastUpdate, $target, $status)
+=======
+function blogpost_add($title,$description,$postedby,$posted_date,$target,$status)
+{
+    
+    $conxn = db_connect();
+    $stmt = $conxn->prepare("INSERT INTO tbl_blogpost(title,description,posted_by,posted_date,image,status) values(?,?,?,?,?,?)");
+    $stmt->bind_param('sssssi', $title, $description,$postedby,$posted_date,$target,$status);
+    $result = $stmt->execute();
+    if ($result) {
+        $stmt->close();
+        $conxn->close();
+        return $result;
+    } else {
+        $stmt->close();
+        $conxn->close();
+        return false;
+    } 
+}
+
+function addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status)
+>>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4
 {
     $conxn = db_connect();
     $sql = "INSERT INTO tbl_blogpost (title,description,posted_by,posted_date,last_update,image,status)values('$title', '$description','$postedby','$posted_date','$lastUpdate','$target','$status')";
@@ -587,6 +672,7 @@ function blogpost_edit($bid, $title, $description, $postedby, $d, $target)
     }
 }
 
+<<<<<<< HEAD
 function getRegGuests()
 {
     $conxn = db_connect();
@@ -595,3 +681,22 @@ function getRegGuests()
     mysqli_close($conxn);
     return mysqli_num_rows($result);
 }
+=======
+function viewGuests()
+{
+    $guests = array();
+    $conxn = db_connect();
+    $sql = "Select * from tbl_guests";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($guests, $row);
+        }
+        return $guests;
+    } else {
+        return false;
+    }
+}
+
+>>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4

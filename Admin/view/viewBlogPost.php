@@ -33,15 +33,33 @@ foreach ($blogpost as $result) {
 
                 &nbsp
 
+<<<<<<< HEAD
 
                 <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid'] . "&img=" . $result['image']; ?>"
                     onClick="return confirm('Are you absolutely sure you want to delete?')">
+=======
+                &nbsp 
+                
+<<<<<<< HEAD
+                <!--
+                    <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
+                    <i class="fa fa-trash" aria-hidden="true"></i></a>
+                -->
+
+                <a href="#deleteBlogModal" data-toggle="modal" onClick="del(<?php echo $result['bid']; ?>); " >
+                 <i class="fa fa-trash" aria-hidden="true"></i></a>
+
+=======
+                
+                    <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']."&img=" . $result['image']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
+>>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4
                     <i class="fa fa-trash" aria-hidden="true"></i></a>
 
                 <!--
                 <a href="#deleteBlogModal" data-toggle="modal" onClick="del(<?php echo $result['bid']; ?>); " >
                  <i class="fa fa-trash" aria-hidden="true"></i></a>
                 -->
+>>>>>>> master
             </td>
         </tr>
         <?php
@@ -52,7 +70,11 @@ foreach ($blogpost as $result) {
 </table>
 
 
+<<<<<<< HEAD
+
+=======
 <!--
+>>>>>>> master
 <div id="deleteBlogModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -82,5 +104,9 @@ foreach ($blogpost as $result) {
                 </form>
             </div>
         </div>
+<<<<<<< HEAD
+    </div>
+=======
     </div>
 -->
+>>>>>>> master

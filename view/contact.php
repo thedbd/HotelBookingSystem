@@ -1,4 +1,13 @@
-<div class="row mt-5 mb-5">
+<?php
+    if(isset($_GET['msg']))
+    {
+        //$msg = $_GET['msg'];
+        //echo $msg;
+        echo "<p class='alert alert-successful'>Message sent successfully!</p>";
+    }
+    
+?>
+<div class="row mt-5 mb-5"> 
     <div class="col-lg-3">
         <div class="info_item">
             <i class="fas fa-home fa-fw"></i>

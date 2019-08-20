@@ -1,6 +1,6 @@
 <!-- navbar starts here -->
 <nav class="navbar navbar-expand-lg   sticky-top navbar-light bg-light">
-    <div class="container">
+    <div class="container"> 
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
                 <?php
 $pages = viewPages();
 foreach ($pages as $result) {
-    ?>
+    ?> 
                 <li
                     class="nav-item <?php if (isset($_GET['p'])) {if ($_GET['p'] == $result['type']) {echo 'active';}}?>">
                     <a class="nav-link" href="<?php echo $result['link']; ?>"><?php echo $result['pName']; ?></span></a>
@@ -27,3 +27,4 @@ foreach ($pages as $result) {
 </nav>
 
 <!-- navigation ends here-->
+ 

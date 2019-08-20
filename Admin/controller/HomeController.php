@@ -47,6 +47,15 @@ if (isset($_GET['a'])) {
         case 'addPages':
             include 'controller/PageController.php';
             break;
+        case 'viewPages':
+            include 'controller/PageController.php';
+            break;
+        case 'deletePage':
+            include 'controller/PageController.php';
+            break;
+        case 'editPages':
+            include 'controller/PageController.php';
+            break;
         case 'addRooms':
             include 'controller/RoomController.php';
             break;
@@ -94,6 +103,9 @@ if (isset($_GET['a'])) {
             break;
         case 'deleteBlogPost':
             include 'controller/BlogPostController.php';
+            break;
+        case 'viewGuests':
+            include 'controller/GuestController.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');
