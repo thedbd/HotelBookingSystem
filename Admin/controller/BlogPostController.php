@@ -34,16 +34,6 @@ if (isset($_GET['a'])) {
 	               
 	                    move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target);
 	                }
-
-	         $blogpost = blogpost_add($title, $description,$postedby,$posted_date,$target,$status);
-	        if ($blogpost) {
-	 
-	            echo "<h3>Added Post</h3>";
-	            include 'view/addBlogPost.php';
-	            
-	        }else{
-	        return false;
-	         }
 	         $blogpost = addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status);
 	        if ($blogpost) {
 	            $msg['title'] = 'Success!!';
@@ -75,18 +65,6 @@ if (isset($_GET['a'])) {
 
     if ($_GET['a'] == "deleteBlogPost") {
 
-        $bid = $_POST['delname'];
-        $deleteBlogPost = delete_blogpost($bid);
-        if ($deleteBlogPost) {
-
-            echo "<h3>Deleted</h3>";
-
-            include 'view/viewBlogPost.php';
-           // header("location:" . $base_url . "?p=home&a=viewBlogPost");
-        } else {
-            echo "<h2>something went wrong!</h2>";
-            return;
-		//$bid = $_POST['delname'];
 		$bid = $_GET['id'];
 		$img = $_GET['img'];
         $deleteBlogPost = delete_blogpost($bid);
@@ -142,7 +120,6 @@ if (isset($_GET['a'])) {
 	         }
 		}
 	}
-}
 }
 ob_end_flush();
 ?>

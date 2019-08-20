@@ -10,7 +10,7 @@ foreach ($testimonials as $result) {
                 <div class="jumbotron">
                     <div class="row">
                         <div class="col-4">
-                            <img src="assets/images/testimonial/attractive.jpg" class="rounded float-left img-fluid"
+                            <img src="resource/images/testimonial/attractive.jpg" class="rounded float-left img-fluid"
                                 alt="...">
                         </div>
                         <div class="col-6">

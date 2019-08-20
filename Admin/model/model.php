@@ -1,28 +1,16 @@
 <?php
  
 function db_connect()
-<<<<<<< HEAD
-{$host = "remotemysql.com";
-    $username = "pGqTRjw0q9";
-    $password = "2yONMbjaDr";
-    $database = "pGqTRjw0q9";
-=======
 {
-   $host = "remotemysql.com";
-   $username = "pGqTRjw0q9";
-  $password = "2yONMbjaDr";
-   $database = "pGqTRjw0q9";
+    //$host = "remotemysql.com";
+  //  $username = "pGqTRjw0q9";
+   // $password = "2yONMbjaDr";
+   // $database = "pGqTRjw0q9";
 
-   // $host = "localhost";
-   // $username = "root";
-   // $password = "";
-   // $database = "hotel1";
->>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4
-
-    //   $host = "localhost";
-    //  $username = "root";
-    //  $password = "";
-    //  $database = "project";
+    $host = "localhost";
+    $username = "root";
+    $password = "";
+   $database = "project";
 
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
@@ -609,29 +597,9 @@ function blogpost_view($bid)
     }
 }
 
-<<<<<<< HEAD
-function addBlogPost($title, $description, $postedby, $posted_date, $lastUpdate, $target, $status)
-=======
-function blogpost_add($title,$description,$postedby,$posted_date,$target,$status)
-{
-    
-    $conxn = db_connect();
-    $stmt = $conxn->prepare("INSERT INTO tbl_blogpost(title,description,posted_by,posted_date,image,status) values(?,?,?,?,?,?)");
-    $stmt->bind_param('sssssi', $title, $description,$postedby,$posted_date,$target,$status);
-    $result = $stmt->execute();
-    if ($result) {
-        $stmt->close();
-        $conxn->close();
-        return $result;
-    } else {
-        $stmt->close();
-        $conxn->close();
-        return false;
-    } 
-}
+
 
 function addBlogPost($title,$description,$postedby,$posted_date,$lastUpdate,$target,$status)
->>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4
 {
     $conxn = db_connect();
     $sql = "INSERT INTO tbl_blogpost (title,description,posted_by,posted_date,last_update,image,status)values('$title', '$description','$postedby','$posted_date','$lastUpdate','$target','$status')";
@@ -672,7 +640,6 @@ function blogpost_edit($bid, $title, $description, $postedby, $d, $target)
     }
 }
 
-<<<<<<< HEAD
 function getRegGuests()
 {
     $conxn = db_connect();
@@ -681,7 +648,7 @@ function getRegGuests()
     mysqli_close($conxn);
     return mysqli_num_rows($result);
 }
-=======
+
 function viewGuests()
 {
     $guests = array();
@@ -698,5 +665,3 @@ function viewGuests()
         return false;
     }
 }
-
->>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4

@@ -25,41 +25,29 @@ foreach ($blogpost as $result) {
             <td><?php echo $result['posted_by']; ?></td>
             <td><?php echo $result['posted_date']; ?></td>
             <td><?php echo $result['last_update']; ?></td>
-            <td><img src="<?php echo $result['image']; ?>" width="70px" height="70px></td>
+            <td><img src="<?php echo $result['image']; ?>" width="70px" height="70px"></td>
             <td><?php echo $result['status']; ?></td>
             <td>
-                <a href=" <?php echo $base_url . "?p=home&a=editBlogPost&id=" . $result['bid']; ?>">
+                <a href="<?php echo $base_url . "?p=home&a=editBlogPost&id=" . $result['bid']; ?>">
+               
                 <i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
 
                 &nbsp
 
-<<<<<<< HEAD
 
-                <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid'] . "&img=" . $result['image']; ?>"
-                    onClick="return confirm('Are you absolutely sure you want to delete?')">
-=======
-                &nbsp 
+
                 
-<<<<<<< HEAD
-                <!--
-                    <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
-                    <i class="fa fa-trash" aria-hidden="true"></i></a>
-                -->
 
-                <a href="#deleteBlogModal" data-toggle="modal" onClick="del(<?php echo $result['bid']; ?>); " >
-                 <i class="fa fa-trash" aria-hidden="true"></i></a>
 
-=======
                 
                     <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']."&img=" . $result['image']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
->>>>>>> 5ca13f123148ece00812e243f51eb1588b15a2e4
+
                     <i class="fa fa-trash" aria-hidden="true"></i></a>
 
                 <!--
                 <a href="#deleteBlogModal" data-toggle="modal" onClick="del(<?php echo $result['bid']; ?>); " >
                  <i class="fa fa-trash" aria-hidden="true"></i></a>
                 -->
->>>>>>> master
             </td>
         </tr>
         <?php
@@ -69,44 +57,3 @@ foreach ($blogpost as $result) {
     </tbody>
 </table>
 
-
-<<<<<<< HEAD
-
-=======
-<!--
->>>>>>> master
-<div id="deleteBlogModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form method="POST" action="<?php echo $base_url . "?p=home&a=deleteBlogPost" ?> ">
-                    <div class="modal-header">
-
-                        <script type="text/javascript">
-                            function del(x){
-                                 document.getElementById("dlt").value = x;
-                                }
-                        </script>
-
-                        <input type="hidden" id="dlt" name="delname">
-                        <h4 class="modal-title">Delete Blog</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this Record?</p>
-                        <p class="text-warning"><small>This action can delete a record.</small></p>
-                    </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-
-                        <a href=" " />
-                        <input type="submit" class="btn btn-danger" value="Delete">
-                    </div>
-                </form>
-            </div>
-        </div>
-<<<<<<< HEAD
-    </div>
-=======
-    </div>
--->
->>>>>>> master

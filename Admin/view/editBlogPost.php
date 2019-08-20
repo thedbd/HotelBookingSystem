@@ -22,14 +22,7 @@
 		  </div>
 		  <div class="col-md-6">
 
-		  		<div class="form-group">
-				    <label for="exampleFormControlSelect1">Posted By</label>
-				    <select class="form-control" id="exampleFormControlSelect1">
-				      <option><?php echo $result['posted_by']; ?></option>
-				      <option>2</option>
-				      <option>3</option>
-				    </select>
-			 	 </div>
+		  		
 		  	<div class="form-group">
 			    <label for="title">Posted by:</label>
 		    	<input type="text" name="postedby" class="form-control" value="<?php echo $result['posted_by']; ?>" id="postedby" required>
@@ -40,8 +33,7 @@
 
 		  		<div class="form-group">
 			    <label for="desc">Description:</label>
-			    <textarea class="form-control" name="description" rows="5" id="desc" required>
-			    	<?php echo $result['description']; ?>
+			   
 			    <textarea class="form-control" name="description" rows="5" id="desc" required><?php echo $result['description']; ?>
 			    </textarea>
 			  	</div>
