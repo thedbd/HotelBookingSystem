@@ -14,30 +14,29 @@
                     <div class="recent-news hidden-mb-60">
                         <?php
 
-$blogpost = viewBlogpost();
-foreach ($blogpost as $result) {
-    ?>
-                        <div class="media">
-                            <div class="media-left">
-                                <img class="media-object" src="assets/images/image2.jpg" width="50px" heoght="50px"
-                                    class="small-img" alt="small-img">
-                            </div>
-                            <div class="media-body">
-                                <h3 class="media-heading">
-                                    <a><?php echo $result['title']; ?></a>
-                                </h3>
-                                <p>
-                                    <a><?php echo $result['description']; ?></a>
-                                </p>
-                                <h5><i class="fa fa-calendar"></i><a><?php echo $result['posted_date']; ?></a>
-                                </h5>
-                            </div>
-                        </div>
+                $blogpost = viewBlogpost();
+                foreach ($blogpost as $result) {
+                    ?>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img class="media-object" src="resource/images/image2.jpg" width="50px" heoght="50px"
+                                                    class="small-img" alt="small-img">
+                                            </div>
+                                            <div class="media-body">
+                                                <h3 class="media-heading">
+                                                    <a><?php echo $result['title']; ?></a>
+                                                </h3>
+                                                <p>
+                                                    <a><?php echo $result['description']; ?></a>
+                                                </p>
+                                                <h5><i class="fa fa-calendar"></i><a><?php echo $result['posted_date']; ?></a>
+                                                </h5>
+                                            </div>
+                                        </div>
 
-                        <?php
-}
-?>
-
+                                        <?php
+                }
+                ?>
 
                     </div>
                 </div>

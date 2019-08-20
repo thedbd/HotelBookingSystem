@@ -31,7 +31,7 @@
 			    <label for="desc">Description:</label>
 			    <textarea class="form-control" name="description" rows="5" id="desc" required></textarea>
 			  	</div>
-  
+   
 	 <div class="row">
 		  <div class="col-md-3 imgUp">
 	    	<div class="imagePreview"></div>
@@ -41,7 +41,7 @@
 	  	<i class="fa fa-plus imgAdd"></i>
 	 </div><!-- row -->
   
-  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+  <input type="submit" value="Submit" class="btn btn-primary btn-user btn-block">
 </form> 
 
 </div>

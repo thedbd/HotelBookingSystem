@@ -19,7 +19,7 @@
     $b = viewPages;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true"
          aria-controls="collapseFour">
-         <i class="fas fa-fw fa-user"></i>
+         <i class="fas fa-file"></i>
          <span>Pages</span>
      </a>
      <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -51,7 +51,7 @@
     $b = viewGallery;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true"
          aria-controls="collapseOne">
-         <i class="fas fa-fw fa-atom"></i>
+         <i class="far fa-images"></i>
          <span>Gallery</span>
      </a>
      <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -82,7 +82,7 @@
     $b = viewRooms;if ($_GET['a'] == $a || $_GET['a'] == $b) {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true"
          aria-controls="collapseEight">
-         <i class="fas fa-fw fa-atom"></i>
+         <i class="fas fa-bed"></i>
          <span>Rooms</span>
      </a>
      <div id="collapseEight" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -94,7 +94,7 @@
  <li class="nav-item  <?php if (isset($_GET['a'])) {if ($_GET['a'] == "viewSlider") {echo 'active';}}?>">
      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true"
          aria-controls="collapseSeven">
-         <i class="fas fa-fw fa-cog"></i>
+         <i class="fas fa-sliders-h"></i>
          <span>Slider</span>
      </a>
      <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -118,7 +118,21 @@
              <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewBlogPost" ?>">View All</a>
          </div>
      </div>
+
+     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse10" aria-expanded="true"
+         aria-controls="collapseTwo">
+         <i class="fas fa-users"></i>
+         <span>Guests</span>
+     </a>
+
+     <div id="collapse10" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+         <div class="bg-white py-2 collapse-inner rounded">
+             <a class="collapse-item" href="<?php echo $base_url . "?p=home&a=viewGuests" ?>">View All</a>
+         </div>
+     </div>
  </li>
+
+ 
  </ul>
 
  <!-- End of Sidebar -->

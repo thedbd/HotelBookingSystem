@@ -646,3 +646,20 @@ function blogpost_edit($bid,$title,$description,$postedby,$d,$target)
     }
 }
 
+function viewGuests()
+{
+    $guests = array();
+    $conxn = db_connect();
+    $sql = "Select * from tbl_guests";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($guests, $row);
+        }
+        return $guests;
+    } else {
+        return false;
+    }
+}
+

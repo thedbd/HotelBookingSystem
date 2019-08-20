@@ -104,6 +104,9 @@ if (isset($_GET['a'])) {
         case 'deleteBlogPost':
             include 'controller/BlogPostController.php';
             break;
+        case 'viewGuests':
+            include 'controller/GuestController.php';
+            break;
         default:
             // throwError(404, 'Requested page does not exists.');
             break;
