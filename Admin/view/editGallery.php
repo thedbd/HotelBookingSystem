@@ -2,13 +2,13 @@
 $gid = $_GET['id'];
 $result = getGallery($gid);
 ?>
-
-<form action="<?php echo $base_url . '?p=home&a=editGallery&id=' . $result['gid']; ?>" method="POST">
+<div class="container">
+<form action="<?php echo $base_url . '?p=home&a=editGallery&id=' . $result['gid']; ?>" method="POST" class="user">
 
     <div class="form-group row">
         <label for="inputimagename" class="col-sm-2 col-form-label">Image Name</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" name="imagetitle" value="<?php echo $result['imagetitle']; ?>"
+            <input type="text" class="form-control form-control-user" name="imagetitle" value="<?php echo $result['imagetitle']; ?>"
                 placeholder="Enter Image Name">
         </div>
     </div>
@@ -21,10 +21,8 @@ $result = getGallery($gid);
     </div>
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary btn-user btn-block">Update</button>
         </div>
     </div>
 </form>
-</body>
-
-</html>
+</div>

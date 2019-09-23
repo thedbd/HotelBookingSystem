@@ -8,7 +8,7 @@ include 'view/nav.php';
 if (isset($_GET['p'])) {
     $controller = $_GET['p'];
     $pages = pageInfo($controller);
-    if ($pages['type'] == "home" || $controller == "login" || $controller == "blog" || $controller == "new_password" || $controller == "fpass" || $controller == "registration") {
+    if ($pages['type'] == "home" || $controller == "login" || $controller == "blog" || $controller == "new_password" || $controller == "rooms" || $controller == "fpass" || $controller == "registration") {
     } else {
         ?>
 
@@ -55,6 +55,12 @@ if (isset($_GET['p'])) {
             break;
         case 'registration':
             include 'controller/RegistrationController.php';
+            break;
+        case 'rooms':
+            include 'controller/RoomsController.php';
+            break;
+        case 'selectRoom':
+            include 'view/selectRoom.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');

@@ -42,7 +42,7 @@
             </div>
             <div class="text ">
                 <h4>David Magar</h4>
-                <span><I>MANAGING DIRECTOR</I></span>
+                <span><I>MANAGING GUFFADI</I></span>
                 <p>Mea omnium explicari te, eu sit vidit harum fabellas, his no legere feugaitper in laudem malorum
                     epicuri, quod natum evertitur ne per.</p>
                 <div class="team-share ">

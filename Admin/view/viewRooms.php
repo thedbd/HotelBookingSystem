@@ -33,11 +33,13 @@ if ($room) {
 " onclick="return confirm('Do you want to change?');"><?php if ($result['status'] == '1') {echo '<span class="badge badge-primary">Active</span>';} else {echo '<span class="badge badge-secondary">Inactive</span>';}
         ;?></a></td>
 
-            <td><a href="<?php echo $base_url . "?p=home&a=editRooms&id=" . $result['rid']; ?>"> <button
-                        class="btn btn-danger">Edit</button></a>
-                <a href="<?php echo $base_url . "?p=home&a=deleteRoom&id=" . $result['rid'] . "&img=" . $result['image']; ?> "
-                    onclick="return confirm('Do you really want to delete?');"> <button
-                        class="btn btn-danger">Delete</button></a></td>
+            <td>
+                <a href="<?php echo $base_url . "?p=home&a=editRooms&id=" . $result['rid']; ?>">
+                    <i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
+                    &nbsp 
+                <a href="<?php echo $base_url . "?p=home&a=deleteRoom&id=" . $result['rid']. "&img=" . $result['image']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
+                        <i class="fa fa-trash" aria-hidden="true"></i></a>
+            </td>
         </tr>
         <?php
 }

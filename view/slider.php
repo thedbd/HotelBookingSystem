@@ -23,7 +23,7 @@ foreach ($slider as $result) {
                 <div class="jumbotron slider-text">
                     <h1 class="display-4"><?php echo $result['sliderTitle']; ?></h1>
                     <p class="lead"><?php echo $result['sliderDesc']; ?></p>
-                    <a class="btn btn-prime btn-lg" href="?p=accomodation" role="button">Book Rooms</a>
+                    <a class="btn btn-prime btn-lg" href="?p=selectRoom" role="button">Book Rooms</a>
                 </div>
             </div>
         </div>

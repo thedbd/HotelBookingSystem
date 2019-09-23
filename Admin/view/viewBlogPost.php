@@ -33,12 +33,6 @@ foreach ($blogpost as $result) {
                 <i class="fa fa-pencil-alt" aria-hidden="true"></i></a>
 
                 &nbsp
-
-
-
-                
-
-
                 
                     <a href="<?php echo $base_url . "?p=home&a=deleteBlogPost&id=" . $result['bid']."&img=" . $result['image']; ?>" onClick="return confirm('Are you absolutely sure you want to delete?')" >
 

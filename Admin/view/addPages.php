@@ -1,3 +1,4 @@
+<div class="container">
 <div class="row">
     <div class="col-md-12">
         <form class="user" action="<?php echo $base_url . "?p=home&a=addPages"; ?>" method="POST"
@@ -31,4 +32,5 @@
 
     </div> <input type="submit" value="Add Page" class="btn btn-primary btn-user btn-block">
     </form>
+</div>
 </div>

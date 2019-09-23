@@ -1,5 +1,5 @@
 <!-- navbar starts here -->
-<nav class="navbar navbar-expand-lg   sticky-top navbar-light bg-light">
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
     <div class="container"> 
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

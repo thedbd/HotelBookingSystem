@@ -8,7 +8,7 @@
             $page = viewPages($pid);
             foreach ($page as $result) {
         ?>
-
+<div class="container">
         <form class="user" action="<?php echo $base_url . "?p=home&a=editPages&id=" . $result['pID']; ?>" method="POST"
             enctype="multipart/form-data">
             <div class="form-group row">

@@ -10,9 +10,6 @@
             <th scope="col">Image</th>
             <th scope="col">Rate</th>
             <th scope="col">Action</th>
-
-
-
         </tr>
     </thead>
     <tbody>
