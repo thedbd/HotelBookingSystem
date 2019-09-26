@@ -14,7 +14,6 @@ function db_connect()
     $database = "project";
     $conxn = mysqli_connect($host, $username, $password, $database) or die(mysqli_error($conxn));
 
-
 // Check connection
     if ($conxn->connect_error) {
         die("Connection failed: " . $conxn->connect_error);
@@ -303,6 +302,40 @@ function guestReg($name, $email, $password, $phone, $country)
 {
     $conxn = db_connect();
     $sql = "INSERT INTO tbl_guests (gName,gEmail,gPassword,gPhone,gCountry) VALUES ('$name','$email','$password','$phone','$country')";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    $affRows = mysqli_affected_rows($conxn);
+    mysqli_close($conxn);
+    if ($affRows > 0) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+function selectRoom()
+{
+    $conxn = db_connect();
+    $room = array();
+    $sql = "SELECT * FROM tbl_rooms WHERE capacity>0";
+    $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
+    mysqli_close($conxn);
+    if ($result->num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($room, $row);
+        }
+        return $room;
+    } else {
+        return false;
+    }
+
+}
+function updateRoomCapacity($capacity, $rid)
+{
+
+    $conxn = db_connect();
+
+    $sql = "UPDATE tbl_rooms SET capacity='$capacity' WHERE rid='$rid'";
     $result = mysqli_query($conxn, $sql) or die(mysqli_error($conxn));
     $affRows = mysqli_affected_rows($conxn);
     mysqli_close($conxn);

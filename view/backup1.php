@@ -7,36 +7,28 @@ if (!empty($_GET["action"])) {
         case "add":
             if (!empty($_POST["quantity"])) {
                 $productByCode = $db_handle->runQuery("SELECT * FROM tbl_rooms WHERE rid='" . $_GET["id"] . "'");
-                $itemArray = array('name' => $productByCode[0]["rname"], 'rid' => $productByCode[0]["rid"], 'adult' => $productByCode[0]["adult"], 'child' => $productByCode[0]["child"], 'quantity' => $_POST["quantity"], 'capacity' => $productByCode[0]["capacity"], 'price' => $productByCode[0]["rprice"]);
+                $itemArray = array($productByCode[0]["rid"] => array('name' => $productByCode[0]["rname"], 'rid' => $productByCode[0]["rid"], 'adult' => $productByCode[0]["adult"], 'child' => $productByCode[0]["child"], 'quantity' => $_POST["quantity"], 'capacity' => $productByCode[0]["capacity"], 'price' => $productByCode[0]["rprice"]));
                 if ($_POST["quantity"] <= $productByCode[0]['capacity']) {
                     $cap = $productByCode[0]['capacity'] - $_POST["quantity"];
                     $roomID = $productByCode[0]['rid'];
                     updateRoomCapacity($cap, $roomID);
 
-                    // Add product name to variable, since we will use it often
-                    // This would be key in cart array.
-                    $productName = $productByCode[0]["rname"];
-
-                    // Array with product data
-                    //   $itemArray = array('productname' => $productName, 'quantity' => $_POST["quantity"], 'sell' => $_POST["price"]);
-
-                    // Check if cart has some products already
                     if (!empty($_SESSION["cart_item"])) {
-
-                        // Is product already in cart? If so, edit only quantity
-                        if (in_array($productName, array_keys($_SESSION["cart_item"]))) {
-                            $_SESSION["cart_item"][$productName]["quantity"] += $_POST["quantity"];
+                        if (in_array($productByCode[0]["rid"], array_keys($_SESSION["cart_item"]))) {
+                            foreach ($_SESSION["cart_item"] as $k => $v) {
+                                if ($productByCode[0]["rid"] == $k) {
+                                    if (empty($_SESSION["cart_item"][$k]["quantity"])) {
+                                        $_SESSION["cart_item"][$k]["quantity"] = 0;
+                                    }
+                                    $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
+                                }
+                            }
                         } else {
-                            // Product is not in cart, but we have other products in cart.
-                            // So just add to existing cart array.
-                            $_SESSION["cart_item"][$productName] = $itemArray;
+                            $_SESSION["cart_item"] = array_merge($_SESSION["cart_item"], $itemArray);
                         }
                     } else {
-                        // No products, create cart session and add first product
-                        $_SESSION["cart_item"] = array();
-                        $_SESSION["cart_item"][$productName] = $itemArray;
+                        $_SESSION["cart_item"] = $itemArray;
                     }
-
                 } else {
                     echo "<script>alert('please select less than available room');</script>";
                 }
@@ -63,14 +55,12 @@ if (!empty($_GET["action"])) {
             }
             break;
         case "empty":
-            //unset($_SESSION["cart_item"]);
-            break;
-        case "continue":
-            header("location:?p=reservation ");
+            unset($_SESSION["cart_item"]);
             break;
     }
 }
 ?>
+
 
 <div class="container">
 
@@ -94,12 +84,10 @@ if (!empty($_GET["action"])) {
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <input type="date" name="checkin" min="<?php echo date('Y-m-d'); ?>"
-                                            value="<?php echo date('Y-m-d'); ?>" />
+                                        <input type="date" name="checkin" />
                                     </div>
                                     <div class="col-sm-4">
-                                        <input type="date" name="checkout" min="<?php echo date('Y-m-d'); ?>"
-                                            value="<?php echo date('Y-m-d'); ?>" />
+                                        <input type="date" name="checkout" />
                                     </div>
                                     <div class="col-sm-4">
                                         <button type="button" class="btn btn-warning">Check Availability</button>
@@ -177,7 +165,7 @@ $total_quantity += $item["quantity"];
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-right"> <a id="btnEmpty" href="?p=selectRoom&action=continue"><button
+                    <div class="text-right"> <a id="btnEmpty" href="?p=selectRoom&action=empty"><button
                                 class="btn btn-prime" align="right">Continue</button></a></div>
                     <?php
 } else {

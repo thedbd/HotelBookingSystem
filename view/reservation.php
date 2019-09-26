@@ -10,6 +10,81 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    Booking Summary
+                </div>
+                <div class="card-body">
+                    <div class="text-right"> <a id="btnEmpty" href="?p=selectRoom&action=empty"><button
+                                class="btn btn-outline-danger">Empty Cart</button></a></div>
+                    <?php
+if (isset($_SESSION["cart_item"])) {
+    $total_quantity = 0;
+    $total_price = 0;
+    ?>
+                    <table class="table" cellpadding="10" cellspacing="1">
+                        <tbody>
+                            <tr>
+                                <th style="text-align:left;">Room Name</th>
+                                <th style="text-align:right;" width="5%">Adult</th>
+                                <th style="text-align:right;" width="15%">Child</th>
+                                <th style="text-align:right;" width="15%">No of Rooms</th>
+                                <th style="text-align:right;" width="15%">Price</th>
+                                <th style="text-align:right;" width="15%">Total</th>
+                                <th style="text-align:center;" width="5%">Remove</th>
+                            </tr>
+                            <?php
+foreach ($_SESSION["cart_item"] as $item) {
+        $item_price = $item["quantity"] * $item["price"];
+        ?>
+                            <tr>
+                                <td><?php echo $item["name"]; ?>
+                                </td>
+                                <td style="text-align:right;"><?php echo $item["adult"]; ?>
+                                </td>
+                                <td style="text-align:right;"><?php echo $item["child"]; ?>
+                                </td>
+                                <td style="text-align:right;"><?php echo $item["quantity"]; ?></td>
+                                <td style="text-align:right;"><?php echo "$ " . $item["price"]; ?></td>
+                                <td style="text-align:right;"><?php echo "$ " . number_format($item_price, 2); ?>
+                                </td>
+                                <td style="text-align:center;"><a
+                                        href="?p=selectRoom&action=remove&id=<?php echo $item["rid"]; ?>&q=<?php echo $item["quantity"]; ?>"
+                                        class="btnRemoveAction"> <i class="fa fa-trash"></i></a></td>
+                            </tr>
+                            <?php
+$total_quantity += $item["quantity"];
+        $total_price += ($item["price"] * $item["quantity"]);
+    }
+    ?>
+
+                            <tr>
+                                <td></td>
+                                <td colspan="2" align="right">Total:</td>
+                                <td align="right"><?php echo $total_quantity; ?></td>
+                                <td align="right" colspan="2">
+                                    <strong><?php echo "$ " . number_format($total_price, 2); ?></strong>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-right"> <a id="btnEmpty" href="?p=selectRoom&action=continue"><button
+                                class="btn btn-prime" align="right">Continue</button></a></div>
+                    <?php
+} else {
+    ?>
+                    <p class="card-text">No Room(s)
+                        Selected</p>
+                    <?php
+}
+?>
+
+
 <div class="container ">
     <h3 class="text-center mt-5 ">Reservation</h3>
     <p class="text-center "> Enter your details</p>

@@ -60,7 +60,7 @@ if (isset($_GET['p'])) {
             include 'controller/RoomsController.php';
             break;
         case 'selectRoom':
-            include 'view/selectRoom.php';
+            include 'controller/SelectRoomController.php';
             break;
         default:
             // throwError(404, 'Requested page does not exists.');
